@@ -6,7 +6,9 @@ module.exports = {
   content: [
     'app/**/*.{ts,tsx}',
     'components/**/*.{ts,tsx}',
-    'pages/**/*.{ts,tsx}'
+    'pages/**/*.{ts,tsx}',
+    'landingpage/**/*.{ts,tsx}'
+
   ],
   theme: {
     container: {
