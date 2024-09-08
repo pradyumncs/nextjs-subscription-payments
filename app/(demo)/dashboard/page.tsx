@@ -29,5 +29,6 @@ export default function DashboardPage() {
       </Breadcrumb>
       <PlaceholderContent />
     </ContentLayout>
+   
   );
 }
