@@ -24,14 +24,9 @@ export default function RootLayout({
     <html lang="en">
        
    <body className={clsx(dmSans.className, "antialiased bg-[#EAEEFE]")}>
-   <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            
-            disableTransitionOnChange
-          >
+
         {children}
-        </ThemeProvider>
+       
       </body>
     
     </html>
