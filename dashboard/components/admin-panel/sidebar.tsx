@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from "next/link";
-import { PanelsTopLeft,  ChevronLeft } from "lucide-react";
+import { PanelsTopLeft,  ChevronLeft,ChevronRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/dashboard/components/ui/button";
@@ -30,27 +30,31 @@ export function Sidebar() {
         )}
       >
         <div className="relative h-full flex flex-col px-3 py-4 overflow-y-auto shadow-md">
-          <Button
-            onClick={setIsOpen}
-            className={cn(
-              "transition-all ease-in-out duration-300 mb-1 text-white hover:text-white",
-              isOpen ? "w-full justify-start" : "w-[60px] justify-center"
-            )}
-            variant="ghost"
-          >
-            <ChevronLeft className="w-6 h-6" />
-            <span
-              className={cn(
-                "ml-2 font-bold text-lg whitespace-nowrap transition-all ease-in-out duration-300",
-                isOpen ? "opacity-100 inline" : "opacity-0 hidden lg:inline lg:opacity-0"
-              )}
-            >
-              Menu
-            </span>
-          </Button>
-          
-          <Menu isOpen={isOpen} />
-        </div>
+  <Button
+    onClick={setIsOpen}
+    className={cn(
+      "transition-all ease-in-out duration-300 mb-1 text-white hover:text-white",
+      isOpen ? "w-full justify-start" : "w-[60px] justify-center"
+    )}
+    variant="ghost"
+  >
+    {isOpen ? (
+      <ChevronLeft className="w-6 h-6" />
+    ) : (
+      <ChevronRight className="w-6 h-6" />
+    )}
+    <span
+      className={cn(
+        "ml-2 font-bold text-lg whitespace-nowrap transition-all ease-in-out duration-300",
+        isOpen ? "opacity-100 inline" : "opacity-0 hidden lg:inline lg:opacity-0"
+      )}
+    >
+      Menu
+    </span>
+  </Button>
+  
+  <Menu isOpen={isOpen} />
+</div>
       </aside>
     </>
   );
