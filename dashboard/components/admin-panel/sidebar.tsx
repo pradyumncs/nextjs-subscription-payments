@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from "next/link";
-import { PanelsTopLeft, Menu as MenuIcon, ChevronLeft } from "lucide-react";
+import { PanelsTopLeft,  ChevronLeft } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/dashboard/components/ui/button";
@@ -48,6 +48,7 @@ export function Sidebar() {
               Menu
             </span>
           </Button>
+          
           <Menu isOpen={isOpen} />
         </div>
       </aside>
