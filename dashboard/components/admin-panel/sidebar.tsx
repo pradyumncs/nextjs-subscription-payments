@@ -19,13 +19,14 @@ export function Sidebar() {
         size="icon"
         variant="outline"
       >
-        <MenuIcon className="h-4 w-4" />
+       
       </Button>
       <aside
         className={cn(
           "fixed top-0 left-0 z-20 h-screen transition-all ease-in-out duration-300 bg-black text-white",
           isOpen ? "w-72" : "w-0 lg:w-[90px]",
-          "translate-x-0"
+          isOpen ? "translate-x-0" : "translate-x-[-100%] lg:translate-x-0", // Hide completely on mobile when closed
+          "lg:overflow-visible overflow-hidden" // Ensure no overflow issues on mobile
         )}
       >
         <div className="relative h-full flex flex-col px-3 py-4 overflow-y-auto shadow-md">
