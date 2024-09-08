@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import clsx from "clsx";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
@@ -19,11 +20,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <>
     <html lang="en">
+       
    <body className={clsx(dmSans.className, "antialiased bg-[#EAEEFE]")}>
+   <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
         {children}
+        </ThemeProvider>
       </body>
     
     </html>
+    </>
   );
 }

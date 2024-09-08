@@ -7,7 +7,8 @@ module.exports = {
     'app/**/*.{ts,tsx}',
     'components/**/*.{ts,tsx}',
     'pages/**/*.{ts,tsx}',
-    'landingpage/**/*.{ts,tsx}'
+    'landingpage/**/*.{ts,tsx}',
+    'dashboard/**/*.{ts,tsx}'
 
   ],
   theme: {

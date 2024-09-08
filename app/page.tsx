@@ -10,11 +10,12 @@ import { Carousel } from "@/components/ui/carousel";
 import { FAQs } from "@/landingpage/sections/FAQ";
 import { Producttestimonials } from "@/landingpage/sections/Producttestimonials";
 import Step1 from "@/landingpage/sections/Step1";
+import Hero2 from "@/landingpage/sections/Hero2";
 export default function Home() {
   return (
     <>
       <Header/>
-      <Hero/>
+      <Hero2/>
       <LogoTicker/>
       <Producttestimonials/>
       <ProductShowcase/>
