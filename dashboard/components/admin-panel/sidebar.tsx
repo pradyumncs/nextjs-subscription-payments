@@ -13,14 +13,7 @@ export function Sidebar() {
   
   return (
     <>
-      <Button
-        onClick={setIsOpen}
-        className="fixed top-4 left-4 z-30 lg:hidden"
-        size="icon"
-        variant="outline"
-      >
-       
-      </Button>
+  
       <aside
         className={cn(
           "fixed top-0 left-0 z-20 h-screen transition-all ease-in-out duration-300 bg-black text-white",

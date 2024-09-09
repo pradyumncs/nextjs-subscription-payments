@@ -8,7 +8,8 @@ module.exports = {
     'components/**/*.{ts,tsx}',
     'pages/**/*.{ts,tsx}',
     'landingpage/**/*.{ts,tsx}',
-    'dashboard/**/*.{ts,tsx}'
+    'dashboard/**/*.{ts,tsx}',
+    'bottomsidebar/**/*.{ts,tsx}'
 
   ],
   theme: {
