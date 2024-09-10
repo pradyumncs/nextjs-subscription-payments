@@ -6,7 +6,8 @@ import { createClient } from '@/utils/supabase/server';
 import {
   getUserDetails,
   getSubscription,
-  getUser
+  getUser,
+  updateFirstTimeUser
 } from '@/utils/supabase/queries';
 
 export default async function Account() {
@@ -15,11 +16,16 @@ export default async function Account() {
     getUser(supabase),
     getUserDetails(supabase),
     getSubscription(supabase)
+    
   ]);
 
   if (!user) {
     return redirect('/signin');
   }
+  console.log(userDetails)
+
+
+
 
   return (
     <section className="mb-32 bg-black">

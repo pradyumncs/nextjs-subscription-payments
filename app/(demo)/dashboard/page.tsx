@@ -10,7 +10,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from "@/dashboard/components/ui/breadcrumb";
-
+import { CreateSeries } from "@/components/create-series2";
 export default function DashboardPage() {
   return (
     <ContentLayout title="Dashboard">
@@ -27,7 +27,7 @@ export default function DashboardPage() {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <PlaceholderContent />
+      <CreateSeries />
     </ContentLayout>
    
   );

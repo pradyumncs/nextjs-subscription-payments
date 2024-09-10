@@ -1,6 +1,20 @@
 import Link from "next/link";
 import Image from "next/image";
+"'use client'"
 
+import * as React from "react"
+import { Mail } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/dashboard/components/ui/card";
 
 export default function PlaceholderContent() {

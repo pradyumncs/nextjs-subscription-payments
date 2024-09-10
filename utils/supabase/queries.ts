@@ -37,3 +37,15 @@ export const getUserDetails = cache(async (supabase: SupabaseClient) => {
     .single();
   return userDetails;
 });
+
+export const updateFirstTimeUser = async (supabase: SupabaseClient, id: string, firstTimeUser: boolean) => {
+  const { error } = await supabase
+    .from('users')
+    .update({ first_time_users: firstTimeUser })
+    .eq('id', id);
+
+  if (error) {
+    console.error('Error updating first_time_users:', error);
+    throw error;
+  }
+};

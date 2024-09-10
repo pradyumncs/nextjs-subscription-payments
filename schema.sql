@@ -10,26 +10,28 @@ create table users (
   -- The customer's billing address, stored in JSON format.
   billing_address jsonb,
   -- Stores your customer's payment instruments.
-  payment_method jsonb
+  payment_method jsonb,
+  -- Indicates if the user is visiting for the first time (true/false)
+  first_time_user boolean default true,  
+  -- Indicates if the user has a pro subscription (true/false)
+  is_pro_subscriber boolean default false 
 );
+
+
 alter table users enable row level security;
 create policy "Can view own user data." on users for select using (auth.uid() = id);
 create policy "Can update own user data." on users for update using (auth.uid() = id);
 
-/**
-* This trigger automatically creates a user entry when a new user signs up via Supabase Auth.
-*/ 
-create function public.handle_new_user() 
-returns trigger as $$
-begin
-  insert into public.users (id, full_name, avatar_url)
-  values (new.id, new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'avatar_url');
-  return new;
-end;
-$$ language plpgsql security definer;
-create trigger on_auth_user_created
-  after insert on auth.users
-  for each row execute procedure public.handle_new_user();
+
+-- Trigger: Modify to initialize 'first_time_user' - it will be added in a later step
+-- create function public.handle_new_user() 
+-- returns trigger as $$
+-- begin
+--   insert into public.users (id, full_name, avatar_url, first_time_user)
+--   values (new.id, new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'avatar_url', true);
+--   return new;
+-- end;
+-- $$ language plpgsql security definer;
 
 /**
 * CUSTOMERS
@@ -143,3 +145,13 @@ create policy "Can only view own subs data." on subscriptions for select using (
  */
 drop publication if exists supabase_realtime;
 create publication supabase_realtime for table products, prices;
+
+-- Up Migration (apply changes)
+ALTER TABLE users 
+  ADD COLUMN first_time_user boolean default true,
+  ADD COLUMN is_pro_subscriber boolean default false;
+
+-- Down Migration (for rolling back)
+ALTER TABLE users
+  DROP COLUMN first_time_user,
+  DROP COLUMN is_pro_subscriber;

@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { ThemeProvider } from "@/providers/theme-provider";
 import BottomNav from "@/bottomsidebar/bottom-nav";
 const dmSans = DM_Sans({ subsets: ["latin"] });
-
+import Navbar from "@/components/ui/Navbar";
 
 
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
        
    <body className={clsx(dmSans.className, "antialiased bg-[#EAEEFE]")}>
-
+   <Navbar />
         {children}
        
       </body>
