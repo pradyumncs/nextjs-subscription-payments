@@ -53,7 +53,7 @@ function Firsttime() {
               </span>
               <h2 className="text-3xl font-semibold text-[#7c3aed]">Destination</h2>
             </div>
-            <p>The account where your video series will be posted</p>
+            <p className="text-lg">The account where your video series will be posted</p>
             <Select name="destination">
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Email Me Instead" />
@@ -71,7 +71,7 @@ function Firsttime() {
               </span>
               <h2 className="text-3xl font-semibold text-[#7c3aed]">Content</h2>
             </div>
-            <p>What will your video series be about?</p>
+            <p className="text-lg">What will your video series be about?</p>
             <Select 
               name="content" 
               onValueChange={(value) => setSelectedTopic(value)}
@@ -94,12 +94,13 @@ function Firsttime() {
 
             {selectedTopic === 'custom' && (
               <div className="space-y-2">
-                <Label htmlFor="custom-prompt">Custom Prompt</Label>
+                <Label htmlFor="custom-prompt" className="text-red-700">Custom Prompt is for Pro users Only 👑</Label>
                 <Textarea
                   id="custom-prompt"
                   name="customPrompt"
                   placeholder="Example: Please share a concise and captivating account of a lesser-known, yet intriguing, historical event. The event MUST be real and factual. Begin with an introduction or question."
                   className="h-32"
+                  disabled
                 />
                 <div className="text-right text-sm text-gray-500">0 / 2500</div>
               </div>
@@ -115,7 +116,7 @@ function Firsttime() {
               </span>
               <h2 className="text-3xl font-semibold text-[#7c3aed]">Series Settings</h2>
             </div>
-            <p>Preferences for every video in your series</p>
+            <p className="text-lg">Preferences for every video in your series</p>
             
             <div className="space-y-2">
               <Label htmlFor="narration-voice" className="flex items-center space-x-2">
@@ -142,7 +143,7 @@ function Firsttime() {
               </Label>
               <ScrollArea className="w-full whitespace-nowrap rounded-md border">
                 <div className="flex w-max space-x-4 p-4">
-                  {["Autoshorts", "Comic Book", "Disney Toon", "Studio Ghibli", "Chill Beats"].map((style) => (
+                  {["YouShorts", "Comic Book", "Disney Toon", "Studio Ghibli", "Chill Beats"].map((style) => (
                     <ArtStyleCard 
                       key={style} 
                       name={style} 
@@ -201,7 +202,7 @@ function Firsttime() {
               </span>
               <h2 className="text-3xl font-semibold text-[#7c3aed]">Create</h2>
             </div>
-            <p>You will be able to preview your upcoming videos before posting</p>
+            <p className="text-lg">You will be able to preview your upcoming videos before posting</p>
             <SubmitButton />
           </div>
           
