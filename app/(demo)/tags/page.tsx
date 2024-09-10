@@ -36,7 +36,7 @@ export default async function PostsPage() {
   
   console.log(userDetails?.first_time_users)
   return (
-    <ContentLayout title="All Posts">
+    <ContentLayout title="">
       {userDetails?.first_time_users && <Firsttime/>} 
       {/* ...rest of your component logic... */}
     </ContentLayout>
