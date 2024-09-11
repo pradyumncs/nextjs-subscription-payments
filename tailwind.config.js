@@ -9,7 +9,8 @@ module.exports = {
     'pages/**/*.{ts,tsx}',
     'landingpage/**/*.{ts,tsx}',
     'dashboard/**/*.{ts,tsx}',
-    'bottomsidebar/**/*.{ts,tsx}'
+    'bottomsidebar/**/*.{ts,tsx}',
+    'sidebarmuslim/**/*.{ts,tsx}'
 
   ],
   theme: {

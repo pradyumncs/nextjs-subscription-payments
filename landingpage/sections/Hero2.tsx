@@ -31,10 +31,10 @@ const Hero2: React.FC = () => {
     <div className="container mx-auto px-4 py-12 flex flex-col md:flex-row items-center justify-between">
       {/* Left side content */}
       <div className="md:w-1/2 mb-8 md:mb-0 text-center md:text-left">
-        <h1 className="text-5xl md:text-6xl font-extrabold text-purple-600 mb-6">
+        <h1 className="text-5xl md:text-6xl font-extrabold text-black mb-6">
           Faceless Videos on Auto-Pilot.
         </h1>
-        <p className="text-2xl md:text-3xl text-gray-600 mb-8">
+        <p className="text-2xl md:text-2xl text-gray-600 mb-8">
           Our powerful AI video creation platform allows you to fully automate a faceless channel.
         </p>
         <button className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white text-xl md:text-2xl font-semibold py-4 px-8 rounded-lg hover:from-purple-600 hover:to-indigo-700 transition duration-300">

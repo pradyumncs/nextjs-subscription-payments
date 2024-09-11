@@ -14,7 +14,7 @@ import Hero2 from "@/landingpage/sections/Hero2";
 export default function Home() {
   return (
     <>
-      <Header/>
+     
       <Hero2/>
       <LogoTicker/>
       <Producttestimonials/>
