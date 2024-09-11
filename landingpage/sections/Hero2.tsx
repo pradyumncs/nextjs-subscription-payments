@@ -29,7 +29,7 @@ const Hero2: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-[80vh] md:min-h-0 flex flex-col py-8 md:py-16" style={{
+    <div className="min-h-[80vh] md:min-h-[75vh] flex flex-col py-8 md:py-16" style={{
       background: `
         radial-gradient(circle at top left, 
           rgba(252, 229, 216, 1) 0%, 
