@@ -60,11 +60,15 @@ function Firsttime() {
   useEffect(() => {
     if (state.message === 'Series created successfully!') {
       const timer = setTimeout(() => {
-        router.push('/dashboard');
-      }, 6000);
-      return () => clearTimeout(timer);
+        if (selectedTopic && selectedTopic !== 'custom') {
+          router.push(`/${selectedTopic}`)
+        } else {
+          router.push('/dashboard')
+        }
+      }, 200)
+      return () => clearTimeout(timer)
     }
-  }, [state.message, router]);
+  }, [state.message, router, selectedTopic])
 
   useEffect(() => {
     // Set the initial art style in the form
