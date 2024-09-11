@@ -7,7 +7,7 @@ import '@/app/globals.css';
 
 import SideNav from '@/sidebarmuslim/components/side-nav';
 
-import Header from './header';
+import Header from '../../sidebarmuslim/components/header';
 
 const inter = Inter({ subsets: ['latin'] });
 
