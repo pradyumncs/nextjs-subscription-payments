@@ -306,7 +306,7 @@ function SubmitButton() {
   
   return (
     <Button type="submit" className="w-full p-7 bg-[#7c3aed] hover:bg-[#6d28d9] text-white" disabled={pending}>
-      {pending ? 'Creating...' : 'CREATE VIDEO +'}
+      {pending ? 'Creating...' : 'CREATE VIDEO '}
     </Button>
   );
 }

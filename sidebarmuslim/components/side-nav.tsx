@@ -75,26 +75,7 @@ export default function SideNav() {
             </div>
           </div>
           {/* Bottom */}
-          <div className="sticky bottom-0 mt-auto whitespace-nowrap mb-4 transition duration-200 block">
-            <ThemeToggle isDropDown={true} />
-            {navItems.map((item, idx) => {
-              if (item.position === 'bottom') {
-                return (
-                  <Fragment key={idx}>
-                    <div className="space-y-1">
-                      <SideNavItem
-                        label={item.name}
-                        icon={item.icon}
-                        path={item.href}
-                        active={item.active}
-                        isSidebarExpanded={isSidebarExpanded}
-                      />
-                    </div>
-                  </Fragment>
-                );
-              }
-            })}
-          </div>
+         
         </aside>
         <div className="mt-[calc(calc(90vh)-40px)] relative">
           <button
