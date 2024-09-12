@@ -30,14 +30,14 @@ export default function Firstvideo() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-[#EAEEFE]">
       <div className="relative w-full max-w-md">
         <div className="mb-4">
           <Button onClick={handleDownload} className="w-full">
             <Download className="mr-2 h-6 w-6" /> Download Video
           </Button>
         </div>
-        <div className="relative bg-white rounded-lg shadow-lg overflow-hidden" style={{ paddingBottom: '170%' }}>
+        <div className="relative bg-[#EAEEFE] rounded-lg shadow-lg overflow-hidden" style={{ paddingBottom: '170%' }}>
           <div className="absolute inset-0">
             <video
               ref={videoRef}
