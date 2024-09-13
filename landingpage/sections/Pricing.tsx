@@ -60,7 +60,7 @@ export const Pricing = () => {
       <div className="container">
         <div className="section-heading">
           <h2 className="section-title">Pricing</h2>
-          <p className="section-description mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus quas molestias beatae ratione commodi</p>
+          <p className="section-description mt-5">Simple pricing. No hidden fees.</p>
         </div>
       <div className=' flex flex-col gap-6 items-center mt-10 lg:flex-row lg:items-ends lg:justify-center'>
         {pricingTiers.map (

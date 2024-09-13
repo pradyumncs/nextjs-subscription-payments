@@ -18,7 +18,7 @@ export const CallToAction = () => {
       <div className="contaimer">
         <div className="section-heading relative">
           <h2 className="section-title">Sign up for free</h2>
-          <p className="section-description mt-5">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia explicabo nam, dolores vitae beatae odio tenetur maxime architecto facere autem rem, quos amet velit iure! Nam quae obcaecati sunt commodi.</p>
+          <p className="section-description mt-5">Create your first Video today </p>
           <motion.img src={starImage.src} 
           alt="Star Image" width={360} 
           className="absolute -left-[350px] -top-[132px]" 
@@ -34,12 +34,16 @@ export const CallToAction = () => {
           }} 
           />
         </div>
-        <div className="flex gap-2 mt-10 justify-center">
-          <button className="btn btn-primary">Get for free</button>
-          <button  className="btn btn-text gap-1">
-            <span>Learn more</span>
-          </button>
-        </div>
+        <div className="flex flex-col gap-2 mt-10 justify-center items-center">
+  <button className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white text-lg md:text-xl lg:text-2xl font-semibold py-3 px-6 md:py-4 md:px-8 rounded-lg hover:from-purple-600 hover:to-indigo-700 transition duration-300">
+    Try AutoShorts.ai for Free
+  </button>
+  <p className="text-sm md:text-base lg:text-lg text-gray-500 mt-3 md:mt-4">
+    (No credit card required)
+  </p>
+</div>
+
+
       </div>
     </section>
   );

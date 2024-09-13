@@ -149,8 +149,8 @@ export const Producttestimonials = () => {
           <div className="flex justify-center">
             <div className="tag">Testimonials</div>
           </div>
-          <h2 className="section-title mt-5">What our users says</h2>
-          <p className="section-description mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nam doloremque incidunt non in quasi, rerum facere. Nisi, ea nam! Repellat porro, fugit dolorem magnam placeat eveniet maxime ea et?</p>
+          <h2 className="section-title mt-5">Create Videos Fast</h2>
+          <p className="section-description mt-5">Create AI Videos in minutes, post automatically on your Social Media. Our AI creation tool creates viral AI videos for you. </p>
         </div>
         <div className="flex justify-center gap-6  mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[1200px] overflow-hidden">
           <TestimonialsColumn testimonials={firstColumn} duration={15} />

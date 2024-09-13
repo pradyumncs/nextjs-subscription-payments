@@ -25,7 +25,7 @@ export async function createSeries(prevState: { message: string }, formData: For
   })
 
   // Revalidate the current path to reflect any changes
-  revalidatePath('/')
+  revalidatePath('/create')
 
   
 

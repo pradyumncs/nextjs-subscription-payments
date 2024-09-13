@@ -15,19 +15,17 @@ import ScrollingTestimonials from "@/landingpage/sections/Scrolltestimonialheroo
 export default function Home() {
   return (
     <>
-      <Hero2/>
-      <LogoTicker/>
-      <Producttestimonials/>
-      <ProductShowcase/>
-      <Step1/>
-      <Pricing/>
+    <Hero2/>
+    {/* <LogoTicker/> */}
+    <Producttestimonials/>
+    <ProductShowcase/>
+    <Step1/>
+    <Pricing/>
     <Carousel/>
-      <Testimonials/>
-    
-      <CallToAction/>
-      <FAQs/>
-      <Footer/>
-    
-    </>
+    {/* <Testimonials/> */}
+    <CallToAction/>
+    <FAQs/>
+    <Footer/>
+  </>
   );
 }

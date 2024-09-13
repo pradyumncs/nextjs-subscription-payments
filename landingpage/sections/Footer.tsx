@@ -20,7 +20,7 @@ export const Footer = () => {
         <div className="flex justify-center gap-6 mt-6">
         
         </div>
-        <p className="mt-6">&copy; 2024 SaaS. All rights reserved.</p>
+        <p className="mt-6">&copy; 2024 Youshorts.ai. All rights reserved.</p>
       </div>
     </footer>
   );

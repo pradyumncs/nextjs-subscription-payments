@@ -67,11 +67,14 @@ const MultiStepComponent: React.FC = () => {
     <>
       <section className="bg-gradient-to-b from-[#fff] to-[#D2DCFF] py-24 overflow-x-clip">
         <div className="container mx-auto px-4">
-          <div className="section-heading mb-5 mt-5">
-            <div className="flex justify-center"></div>
-            <h2 className="section-title mt-15 text-center">How Does It Work?</h2>
-            <p className="section-description mt-5 text-center">Create Your Videos Today</p>
+        <div className="section-heading">
+          <div className="flex justify-center">
+            <div className="tag">Boost your productivity</div>
           </div>
+          <h2 className="section-title mt-5 ">Step by Step</h2>
+          <p className="section-description mt-5 ">Here is the way to create videos Super Fast </p>
+        </div>
+      -/
           
           <Step
             title="Step 1: Choose a Topic"

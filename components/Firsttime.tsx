@@ -121,7 +121,6 @@ function Firsttime() {
                 <SelectValue placeholder="Choose Content" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="random">Random AI Story</SelectItem>
                 <SelectItem value="scary">Scary Stories</SelectItem>
                 <SelectItem value="bedtime">Bedtime Stories</SelectItem>
                 <SelectItem value="history">Interesting History</SelectItem>
@@ -150,7 +149,7 @@ function Firsttime() {
 
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <span className="bg-[#7c3aed] text-white px-3 py-1 rounded-full text-sm">
+            <span className="bg-[#7c3aed] text-white px-3 py-1 rounded-full text-sm">
                 Step 3
               </span>
               <h2 className="text-3xl font-semibold text-[#7c3aed]">Series Settings</h2>

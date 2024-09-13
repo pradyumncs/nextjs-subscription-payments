@@ -4,7 +4,9 @@ import Tiktok from '@/landingpage/assets/tiktok.png';
 import Instagram from '@/landingpage/assets/instagram.png';
 import Youtube from '@/landingpage/assets/youtube.png';
 import Facebook from '@/landingpage/assets/facebook.png';
+import Snapchat from '@/landingpage/assets/snapchat.png';
 import landing1 from '@/landingpage/assets/videoimages/1.png';
+
 
 interface AvatarProps {
   src: string;
@@ -85,6 +87,7 @@ const Hero2: React.FC = () => {
               <Image src={Instagram} alt="YouTube" width={32} height={32} className="text-red-600" />
               <Image src={Youtube} alt="Instagram" width={32} height={32} className="text-pink-600" />
               <Image src={Facebook} alt="Facebook" width={32} height={32} className="text-pink-600" />
+              <Image src={Snapchat} alt="Snapchat" width={32} height={28} className="text-pink-600" /> 
             </div>
 
             <div className="absolute inset-0 flex justify-center items-center">

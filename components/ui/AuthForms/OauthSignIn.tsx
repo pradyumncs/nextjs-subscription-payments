@@ -4,6 +4,7 @@ import Button from '@/components/ui/Button';
 import { signInWithOAuth } from '@/utils/auth-helpers/client';
 import { type Provider } from '@supabase/supabase-js';
 import { Github } from 'lucide-react';
+import { FcGoogle } from 'react-icons/fc'; // Import Google icon
 import { useState } from 'react';
 
 type OAuthProviders = {
@@ -17,14 +18,14 @@ export default function OauthSignIn() {
     {
       name: 'google',
       displayName: 'Google',
-      icon: <Github className="h-5 w-5" />
+      icon: <FcGoogle size={24} /> // Use Google icon here
     }
     /* Add desired OAuth providers here */
   ];
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    setIsSubmitting(true); // Disable the button while the request is being handled
+    setIsSubmitting(true);
     await signInWithOAuth(e);
     setIsSubmitting(false);
   };
