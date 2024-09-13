@@ -6,7 +6,7 @@ import Youtube from '@/landingpage/assets/youtube.png';
 import Facebook from '@/landingpage/assets/facebook.png';
 import Snapchat from '@/landingpage/assets/snapchat.png';
 import landing1 from '@/landingpage/assets/videoimages/1.png';
-
+import Link from "next/link";
 
 interface AvatarProps {
   src: string;
@@ -70,9 +70,11 @@ const Hero2: React.FC = () => {
           <p className="text-xl md:text-2xl text-gray-600 mb-6 md:mb-8">
             Our powerful AI video creation platform allows you to fully automate a faceless channel.
           </p>
+          <Link href="/create">
           <button className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white text-lg md:text-xl lg:text-2xl font-semibold py-3 px-6 md:py-4 md:px-8 rounded-lg hover:from-purple-600 hover:to-indigo-700 transition duration-300">
             Try AutoShorts.ai for Free
           </button>
+          </Link>
           <p className="text-sm md:text-base lg:text-lg text-gray-500 mt-3 md:mt-4 items-center">
             (No credit card required)
           </p>
