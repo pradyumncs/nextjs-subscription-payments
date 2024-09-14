@@ -1,16 +1,19 @@
-"use client"
+'use client'
 
 import { useState, useRef, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
-import { Download,  Play} from "lucide-react"
+import { Download, Play } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
-export default function Firstvideo() {
+interface FirstvideoProps {
+  videoUrl: string;
+}
+
+export default function Firstvideo({ videoUrl }: FirstvideoProps) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [loadingProgress, setLoadingProgress] = useState(0)
   const videoRef = useRef<HTMLVideoElement>(null)
-  const videoUrl = "https://pmoney.s3.ap-south-1.amazonaws.com/history+(10).mp4"
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -22,7 +25,7 @@ export default function Firstvideo() {
         }
         return prev + 1
       })
-    }, 200) // 20 seconds / 100 steps = 200ms per step
+    }, 20)// 20 seconds / 100 steps = 200ms per step
 
     return () => clearInterval(timer)
   }, [])
@@ -42,11 +45,11 @@ export default function Firstvideo() {
     const link = document.createElement('a')
     link.href = videoUrl
     link.download = 'video.mp4'
+    link.target = '_blank'  // Open in a new tab
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
   }
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#EAEEFE]">
       <div className="relative w-full max-w-md">

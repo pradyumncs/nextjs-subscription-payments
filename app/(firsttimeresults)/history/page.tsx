@@ -8,16 +8,23 @@ import {
   getSubscription,
   getUser,
   updateFirstTimeUser
-  
 } from '@/utils/supabase/queries';
 import Firsttime from "@/components/Firsttime";
 import Firstvideo from "@/components/newvideo/firstvideo";
-export default async function PostsPage() {
+
+export default function Component() {
+  const videoUrls = [
+    "https://pnicjjfbqfmivwgsvnhj.supabase.co/storage/v1/object/public/madarasan/a1232123%20(6).mp4?t=2024-09-14T16%3A40%3A00.446Z",
+    "https://pnicjjfbqfmivwgsvnhj.supabase.co/storage/v1/object/public/madarasan/a1232123%20(7).mp4?t=2024-09-14T16%3A43%3A47.226Z",
+    "https://pnicjjfbqfmivwgsvnhj.supabase.co/storage/v1/object/public/madarasan/a1232123%20(8).mp4?t=2024-09-14T16%3A42%3A56.362Z"
+  ];
+
+  const randomIndex = Math.floor(Math.random() * videoUrls.length);
+  const selectedVideoUrl = videoUrls[randomIndex];
 
   return (
     <ContentLayout title="">
-   { /*  {userDetails?.first_time_users && <Firsttime/>} */}
-   < Firstvideo/>
+      <Firstvideo videoUrl={selectedVideoUrl} />
       {/* ...rest of your component logic... */}
     </ContentLayout>
   );

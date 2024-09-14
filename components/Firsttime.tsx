@@ -127,7 +127,7 @@ function Firsttime() {
                 <SelectItem value="motivational">Motivational</SelectItem>
                 <SelectItem value="fun_facts">Fun Facts</SelectItem>
                 <SelectItem value="philosophy">Philosophy</SelectItem>
-                <SelectItem value="marketing">Product Marketing</SelectItem>
+
                 <SelectItem value="custom">Custom Topic</SelectItem>
               </SelectContent>
             </Select>
