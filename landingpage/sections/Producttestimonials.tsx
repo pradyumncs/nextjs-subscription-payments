@@ -146,8 +146,8 @@ export const Producttestimonials = () => {
     <section className="bg-white">
       <div className="container">
         <div className="section-heading">
-          <div className="flex justify-center">
-            <div className="tag">Testimonials</div>
+          <div className="flex justify-center p-6">
+            <div className="tag">Results</div>
           </div>
           <h2 className="section-title mt-5">Create Videos Fast</h2>
           <p className="section-description mt-5">Create AI Videos in minutes, post automatically on your Social Media. Our AI creation tool creates viral AI videos for you. </p>

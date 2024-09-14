@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
-import { Download, Play } from "lucide-react"
+import { Download,  Play} from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
 export default function Firstvideo() {

@@ -82,7 +82,7 @@ function Firsttime() {
   return (
     <div className="min-h-screen bg-gradient-to-r from-purple-500 to-indigo-600 text-white flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-3xl space-y-8">
-        <h1 className="text-4xl font-bold text-center mb-2">CREATE A SERIES</h1>
+        <h1 className="text-4xl font-bold text-center mb-2">CREATE A VIDEO</h1>
         <p className="text-center text-lg mb-8">
           Schedule a series of Faceless Videos to post on auto-pilot.
         </p>
@@ -134,13 +134,13 @@ function Firsttime() {
 
             {selectedTopic === 'custom' && (
               <div className="space-y-2">
-                <Label htmlFor="custom-prompt" className="text-red-700">Custom Prompt is for Pro users Only 👑</Label>
+             
                 <Textarea
                   id="custom-prompt"
                   name="customPrompt"
                   placeholder="Example: Please share a concise and captivating account of a lesser-known, yet intriguing, historical event. The event MUST be real and factual. Begin with an introduction or question."
                   className="h-32"
-                  disabled
+                  
                 />
                 <div className="text-right text-sm text-gray-500">0 / 2500</div>
               </div>

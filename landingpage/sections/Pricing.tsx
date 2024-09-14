@@ -10,13 +10,17 @@ const pricingTiers = [
     popular: false,
     inverse: false,
     features: [
-      "Up to 5 project members",
-      "Unlimited tasks and projects",
-      "2GB storage",
-      "Integrations",
-      "Basic support",
-    ],
+      "✅Creates 1 video",
+      "✅ 1 Series",
+      "✅ Edit & preview videos",
+      "❌ Auto-post to channel",
+      "❌ HD Video Resolution",
+      "❌ Background Music",
+      "❌ Voice Cloning",
+      "❌ No Watermark"
+    ] 
   },
+  
   {
     title: "Pro",
     monthlyPrice: 9,
@@ -24,15 +28,17 @@ const pricingTiers = [
     popular: true,
     inverse: true,
     features: [
-      "Up to 50 project members",
-      "Unlimited tasks and projects",
-      "50GB storage",
-      "Integrations",
-      "Priority support",
-      "Advanced support",
-      "Export support",
-    ],
+      "✅ Posts 3 times a week",
+      "✅ 1 Series",
+      "✅ Edit & preview videos",
+      "✅ Auto-post to channel",
+      "✅ HD Video Resolution",
+      "✅ Background Music",
+      "✅ Voice Cloning",
+      "✅ No Watermark"
+    ]
   },
+  
   {
     title: "Business",
     monthlyPrice: 19,
@@ -40,19 +46,17 @@ const pricingTiers = [
     popular: false,
     inverse: false,
     features: [
-      "Up to 5 project members",
-      "Unlimited tasks and projects",
-      "200GB storage",
-      "Integrations",
-      "Dedicated account manager",
-      "Custom fields",
-      "Advanced analytics",
-      "Export capabilities",
-      "API access",
-      "Advanced security features",
-    ],
-  },
-];
+      "✅ Posts once a day",
+      "✅ 1 Series",
+      "✅ Edit & preview videos",
+      "✅ Auto-post to channel",
+      "✅ HD Video Resolution",
+      "✅ Background Music",
+      "✅ Voice Cloning",
+      "✅ No Watermark"
+    ]
+  }
+];  
 
 export const Pricing = () => {
   return (
@@ -74,12 +78,12 @@ export const Pricing = () => {
           }) => (
             <div key={title} className={twMerge(
               "card", 
-              inverse === true && 'bg-black border-black text-white/60')}
+              inverse === true && 'bg-black border-black text-white')}
             >
               <div className='flex justify-between'>
                 <h3 className={twMerge(
                   "text-lg font-bold text-black/50", 
-                  inverse === true && 'text-white/60')}
+                  inverse === true && 'text-white')}
                 > 
                   {title} 
                 </h3>

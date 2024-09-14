@@ -16,9 +16,10 @@ export default function Home() {
   return (
     <>
     <Hero2/>
-    {/* <LogoTicker/> */}
-    <Producttestimonials/>
-    <ProductShowcase/>
+   {/*  <LogoTicker/> /}
+  
+   {/* <ProductShowcase/>*/}
+     <Producttestimonials/>
     <Step1/>
     <Pricing/>
     <Carousel/>
