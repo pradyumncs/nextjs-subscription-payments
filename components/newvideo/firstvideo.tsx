@@ -25,7 +25,7 @@ export default function Firstvideo({ videoUrl }: FirstvideoProps) {
         }
         return prev + 1
       })
-    }, 20)// 20 seconds / 100 steps = 200ms per step
+    }, 200)// 20 seconds / 100 steps = 200ms per step
 
     return () => clearInterval(timer)
   }, [])
