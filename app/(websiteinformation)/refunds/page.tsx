@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-export default function TermsOfService() {
+export default function Refund() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">Youshorts.ai Terms & Conditions</h1>
