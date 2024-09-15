@@ -16,6 +16,7 @@ export const Footer = () => {
           <a href="">Pricing</a>
           <a href="/terms">Terms of Service</a>
           <a href="/privacy">Privacy Policy</a>
+          <a href="/contact">Contact us</a>
         </nav>
         <div className="flex justify-center gap-6 mt-6">
         
