@@ -38,7 +38,7 @@ export const CallToAction = () => {
         <div className="flex flex-col gap-2 mt-10 justify-center items-center">
           <Link href="/create">
             <button className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white text-lg md:text-xl lg:text-2xl font-semibold py-3 px-6 md:py-4 md:px-8 rounded-lg hover:from-purple-600 hover:to-indigo-700 transition duration-300">
-              Try AutoShorts.ai for Free
+              Try Youshorts.ai for Free
             </button>
           </Link>
   <p className="text-sm md:text-base lg:text-lg text-gray-500 mt-3 md:mt-4">

@@ -106,13 +106,13 @@ export const Pricing = () => {
                 )}
               </div>
               <div className="flex items-baseline gao-1 mt-[30px]">
-                <span className="text-4xl font-bold tracking-tighter leading-none "> ${monthlyPrice} </span>
-                <span className={twMerge(
+             {/*   <span className="text-4xl font-bold tracking-tighter leading-none "> ${monthlyPrice} </span> */}
+                {/*   <span className={twMerge(
                   " tracking-tight font-bold text-black/50", 
                   inverse === true && 'text-white/60')}
                 > 
                   /month 
-                </span>
+                </span>*/}
               </div>
               <button className={twMerge(
                 'btn btn-primary w-full mt-[30px]', 

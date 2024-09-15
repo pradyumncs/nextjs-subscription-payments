@@ -5,7 +5,10 @@ import Instagram from '@/landingpage/assets/instagram.png';
 import Youtube from '@/landingpage/assets/youtube.png';
 import Facebook from '@/landingpage/assets/facebook.png';
 import Snapchat from '@/landingpage/assets/snapchat.png';
-import landing1 from '@/landingpage/assets/videoimages/1.png';
+import landing1 from '@/landingpage/assets/videoimages/hero1.png';
+import landing2 from '@/landingpage/assets/videoimages/hero2.png';
+import landing3 from '@/landingpage/assets/videoimages/hero3.png';
+
 import Link from "next/link";
 
 interface AvatarProps {
@@ -72,7 +75,7 @@ const Hero2: React.FC = () => {
           </p>
           <Link href="/create">
           <button className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white text-lg md:text-xl lg:text-2xl font-semibold py-3 px-6 md:py-4 md:px-8 rounded-lg hover:from-purple-600 hover:to-indigo-700 transition duration-300">
-            Try AutoShorts.ai for Free
+            Try Youshorts.ai for Free
           </button>
           </Link>
           <p className="text-sm md:text-base lg:text-lg text-gray-500 mt-3 md:mt-4 items-center">
@@ -97,7 +100,7 @@ const Hero2: React.FC = () => {
               <div className="absolute left-1/4 top-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-12 z-10">
                 <div className="relative">
                   <Image
-                    src={landing1}
+                    src={landing3}
                     alt="Girl in nature"
                     width={140}
                     height={240}
@@ -110,7 +113,7 @@ const Hero2: React.FC = () => {
               <div className="relative z-20">
                 <div className="relative">
                   <Image
-                    src={landing1}
+                    src={landing2}
                     alt="Butterflies flutter"
                     width={160}
                     height={280}

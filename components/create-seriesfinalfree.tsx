@@ -115,7 +115,7 @@ export function CreateSeries() {
               </Label>
               <ScrollArea className="w-full whitespace-nowrap rounded-md border">
                 <div className="flex w-max space-x-4 p-4">
-                  {["Autoshorts", "Comic Book", "Disney Toon", "Studio Ghibli", "Chill Beats"].map((style) => (
+                  {["Youshorts", "Comic Book", "Disney Toon", "Studio Ghibli", "Chill Beats"].map((style) => (
                     <ArtStyleCard 
                       key={style} 
                       name={style} 

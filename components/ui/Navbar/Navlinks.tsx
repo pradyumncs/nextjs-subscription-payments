@@ -25,19 +25,16 @@ export default function Navlinks({ user }: NavlinksProps) {
           <Link href="/" className={s.link}>
             Pricing
           </Link>
-          {user && (
-            <Link href="/account" className={s.link}>
-              Account
-            </Link>
-          )}
+         
         </nav>
       </div>
       <div className="flex justify-end space-x-8">
         {user ? (
+          
           <form onSubmit={(e) => handleRequest(e, SignOut, router)}>
             <input type="hidden" name="pathName" value={usePathname()} />
             <button type="submit" className={s.link}>
-              Sign out
+              {/* Sign out */}
             </button>
           </form>
         ) : (

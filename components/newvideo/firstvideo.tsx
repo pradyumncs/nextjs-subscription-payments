@@ -20,7 +20,7 @@ export default function Firstvideo({ videoUrl }: FirstvideoProps) {
       setLoadingProgress((prev) => {
         if (prev >= 100) {
           clearInterval(timer)
-          setTimeout(() => setIsLoading(false), 500) // Add a small delay before showing the video
+          setTimeout(() => setIsLoading(false), 100) // Add a small delay before showing the video
           return 100
         }
         return prev + 1
