@@ -10,7 +10,7 @@ const privacyPolicy: Section[] = [
     title: "Youshorts Privacy Policy",
     content: (
       <>
-        <p>Last updated March 7th, 2024</p>
+        <p>Last updated September 7th, 2024</p>
         <p>Youshorts takes data privacy very seriously. This privacy policy explains how we collect, share, use personal information, and how you can exercise your privacy rights, including our practices regarding the access, use, storage, and sharing of Google user data.</p>
         <p>Youshorts operates the https://youshorts.ai website, which provides the SERVICE.</p>
         <p>This page is used to inform website visitors and our service users regarding our policies with the collection, use, and disclosure of Personal Information and Google user data if anyone decides to use our Service, the Youshorts website.</p>

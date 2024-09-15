@@ -10,10 +10,8 @@ export const Footer = () => {
           <Image src={logo} height={40} alt="SaaS logo" className="relative"/>
         </div>
         <nav className="flex flex-col md:flex-row md:justify-center gap-6 mt-6">
-          <a href="">About</a>
-          <a href="">Feaatures</a>
-          <a href="">Customers</a>
-          <a href="">Pricing</a>
+        
+          <a href="/pricing">Pricing</a>
           <a href="/terms">Terms of Service</a>
           <a href="/privacy">Privacy Policy</a>
           <a href="/contact">Contact us</a>
