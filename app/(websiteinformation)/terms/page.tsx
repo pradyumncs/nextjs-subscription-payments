@@ -22,6 +22,8 @@ export default function TermsOfService() {
           By accessing this website we assume you accept these terms and conditions. Do not continue to use Youshorts.ai if you do not agree to take all of the terms and conditions stated on this page.
         </p>
 
+     
+
         <p>
           Images uploaded to Youshorts.ai are not added to the Youshorts.ai database nor are they made accessible to any other users. Copyright for all images submitted to Youshorts.ai remains with the original owner/author.
         </p>
@@ -42,6 +44,58 @@ export default function TermsOfService() {
           .
         </p>
       </section>
+      <section className="mt-8 space-y-4">
+      <h2 className="text-2xl font-semibold">3. Use of Service</h2>
+      <p>
+        YouShorts.ai provides tools for generating faceless videos for platforms
+        such as YouTube, TikTok, Instagram Reels, Snapchat Stories, and Facebook
+        Reels. Your use of the service must comply with all applicable laws and
+        regulations, including those concerning intellectual property, privacy,
+        and content creation.
+      </p>
+
+      <h2 className="text-2xl font-semibold">3.1 Prohibited Content</h2>
+      <p>
+        You agree not to use the service to generate, share, or promote any
+        content that is:
+      </p>
+      <ul>
+        <li>Explicit, adult, or sexually suggestive.</li>
+        <li>Violent, harmful, abusive, or threatening.</li>
+        <li>
+          Discriminatory or hateful based on race, religion, gender, sexual
+          orientation, age, or disability.
+        </li>
+        <li>Misleading or deceptive, including deepfakes and false representations.</li>
+      </ul>
+
+      <h2 className="text-2xl font-semibold">3.2 Prohibited Use of Models</h2>
+      <p>
+        You must not use LoRAs (Low-Rank Adaptation models) or any other models
+        that violate YouShorts.ai’s Terms of Service to generate inappropriate
+        or harmful content. This includes, but is not limited to, models that
+        facilitate the creation of explicit or offensive material.
+      </p>
+
+      <h2 className="text-2xl font-semibold">3.3 Automatic Banning & Blocking</h2>
+      <p>
+        YouShorts.ai has zero tolerance for violations of these content
+        guidelines. Any user found violating the content restrictions, including
+        the use of models or LoRAs to create explicit or offensive material,
+        will be <strong>immediately blocked or banned</strong> from accessing the
+        system. First time offenders will face permanent bans from the platform.
+      </p>
+
+      <h2 className="text-2xl font-semibold">4. Account Responsibility</h2>
+      <p>
+        You are responsible for maintaining the security of your account and for
+        all activities that occur under your account. You must notify
+        YouShorts.ai immediately if you believe your account has been
+        compromised or is being used in an unauthorized manner.
+      </p>
+
+      </section>
+
 
       <section className="mt-8 space-y-4">
         <h2 className="text-2xl font-semibold">Disclaimer of Any Warranty</h2>

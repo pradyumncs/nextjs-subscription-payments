@@ -22,6 +22,14 @@ export default function Component() {
             <p className="text-sm text-gray-500 mb-4">
               We typically respond within 1-2 business days.
             </p>
+
+            <p className="text-sm text-gray-500 mb-4">
+            Our operating address -
+            Deepa residency 
+            Next to Besant College , Pvs Kalakunj road
+            Mangalore - 575003
+            India
+            </p>
             <Button 
               asChild
               variant="outline"
