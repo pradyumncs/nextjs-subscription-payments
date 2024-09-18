@@ -1,23 +1,24 @@
-"use client"
-import * as React from "react";
-import { useState, useEffect } from "react";
-import { Mail, Mic, Brush, Globe, Clock } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+'use client'
+
+import * as React from "react"
+import { useState, useEffect } from "react"
+import { Mail, Mic, Brush, Globe, Clock } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { createSeries } from "../app/actions/tagfirstcombined";
-import { useFormState, useFormStatus } from 'react-dom';
-import { useRouter } from 'next/navigation';
-import Image, { StaticImageData } from 'next/image';
+} from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { createSeries } from "../app/actions/tagfirstcombined"
+import { useFormState, useFormStatus } from 'react-dom'
+import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 // Import images
 import youShortsImage from '@/assets/work/1.webp'
@@ -25,37 +26,37 @@ import comicBookImage from '@/assets/work/2.webp'
 import disneyImage from '@/assets/work/3.png'
 import studioGhibliImage from '@/assets/work/5.webp'
 import ChillBeatsImage from '@/assets/work/4.png'
-// Define types
-type ArtStyle = "YouShorts" | "Comic Book" | "Disney Toon" | "Studio Ghibli" | "Chill Beats";
+
+type ArtStyle = "YouShorts" | "Comic Book" | "Disney Toon" | "Studio Ghibli" | "Chill Beats"
 
 interface StyleImage {
-  src: StaticImageData;
-  alt: string;
+  src: any // Using 'any' here as a workaround for the StaticImageData type
+  alt: string
 }
 
 type StyleImages = {
-  [key in ArtStyle]: StyleImage | null;
-};
+  [key in ArtStyle]: StyleImage
+}
 
 const styleImages: StyleImages = {
   "YouShorts": { src: youShortsImage, alt: "YouShorts Style" },
   "Comic Book": { src: comicBookImage, alt: "Comic Book Style" },
   "Disney Toon": { src: disneyImage, alt: "Disney Toon Style" },
   "Studio Ghibli": { src: studioGhibliImage, alt: "Studio Ghibli Style" },
-  "Chill Beats": { src: ChillBeatsImage, alt: "Studio Ghibli Style" },
-};
+  "Chill Beats": { src: ChillBeatsImage, alt: "Chill Beats Style" },
+}
 
-const artStyles: ArtStyle[] = ["YouShorts", "Comic Book", "Disney Toon", "Studio Ghibli", "Chill Beats"];
+const artStyles: ArtStyle[] = ["YouShorts", "Comic Book", "Disney Toon", "Studio Ghibli", "Chill Beats"]
 
 const initialState = {
   message: '',
-};
+}
 
-function Firsttime() {
-  const [selectedStyle, setSelectedStyle] = React.useState<ArtStyle>("YouShorts");
-  const [selectedTopic, setSelectedTopic] = useState("");
-  const [state, formAction] = useFormState(createSeries, initialState);
-  const router = useRouter();
+export default function Component() {
+  const [selectedStyle, setSelectedStyle] = React.useState<ArtStyle>("YouShorts")
+  const [selectedTopic, setSelectedTopic] = useState("scary")
+  const [state, formAction] = useFormState(createSeries, initialState)
+  const router = useRouter()
 
   useEffect(() => {
     if (state.message === 'Series created successfully!') {
@@ -72,12 +73,12 @@ function Firsttime() {
 
   useEffect(() => {
     // Set the initial art style in the form
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'artStyle';
-    input.value = selectedStyle;
-    document.querySelector('form')?.appendChild(input);
-  }, []);
+    const input = document.createElement('input')
+    input.type = 'hidden'
+    input.name = 'artStyle'
+    input.value = selectedStyle
+    document.querySelector('form')?.appendChild(input)
+  }, [])
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-purple-500 to-indigo-600 text-white flex flex-col items-center justify-center p-4">
@@ -95,7 +96,7 @@ function Firsttime() {
               <h2 className="text-3xl font-semibold text-[#7c3aed]">Destination</h2>
             </div>
             <p className="text-lg">The account where your video series will be posted</p>
-            <Select name="destination">
+            <Select name="destination" defaultValue="email">
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Email Me Instead" />
               </SelectTrigger>
@@ -115,6 +116,7 @@ function Firsttime() {
             <p className="text-lg">What will your video series be about?</p>
             <Select 
               name="content" 
+              defaultValue="scary"
               onValueChange={(value) => setSelectedTopic(value)}
             >
               <SelectTrigger className="w-full">
@@ -126,12 +128,10 @@ function Firsttime() {
                 <SelectItem value="history">Interesting History</SelectItem>
                 <SelectItem value="motivational">Motivational</SelectItem>
                 <SelectItem value="fun_facts">Fun Facts</SelectItem>
-                <SelectItem value="philosophy">Philosophy</SelectItem>
-
-                {/*   <SelectItem value="custom">Custom Topic</SelectItem>*/}
-              </SelectContent>
+                <SelectItem value="philosophy">Philosophy</SelectItem>               
+                 {/*   <SelectItem value="custom">Custom Topic</SelectItem>*/}
+                </SelectContent>
             </Select>
-
             {selectedTopic === 'custom' && (
               <div className="space-y-2">
              
@@ -144,8 +144,7 @@ function Firsttime() {
                 />
                 <div className="text-right text-sm text-gray-500">0 / 2500</div>
               </div>
-            )}
-          </div>
+            )}          </div>
 
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
@@ -161,7 +160,7 @@ function Firsttime() {
                 <Mic className="w-4 h-4" />
                 <span>Narration Voice</span>
               </Label>
-              <Select name="narrationVoice">
+              <Select name="narrationVoice" defaultValue="onyx">
                 <SelectTrigger id="narration-voice" className="w-full">
                   <SelectValue placeholder="Select a voice" />
                 </SelectTrigger>
@@ -187,16 +186,16 @@ function Firsttime() {
                       name={style} 
                       isSelected={selectedStyle === style}
                       onClick={() => {
-                        setSelectedStyle(style);
-                        const input = document.querySelector('input[name="artStyle"]');
+                        setSelectedStyle(style)
+                        const input = document.querySelector('input[name="artStyle"]')
                         if (input) {
-                          (input as HTMLInputElement).value = style;
+                          (input as HTMLInputElement).value = style
                         } else {
-                          const newInput = document.createElement('input');
-                          newInput.type = 'hidden';
-                          newInput.name = 'artStyle';
-                          newInput.value = style;
-                          document.querySelector('form')?.appendChild(newInput);
+                          const newInput = document.createElement('input')
+                          newInput.type = 'hidden'
+                          newInput.name = 'artStyle'
+                          newInput.value = style
+                          document.querySelector('form')?.appendChild(newInput)
                         }
                       }}
                     />
@@ -211,7 +210,7 @@ function Firsttime() {
                 <Globe className="w-4 h-4" />
                 <span>Video Language</span>
               </Label>
-              <Select name="videoLanguage">
+              <Select name="videoLanguage" defaultValue="english-us">
                 <SelectTrigger id="video-language" className="w-full">
                   <SelectValue placeholder="English US" />
                 </SelectTrigger>
@@ -227,7 +226,7 @@ function Firsttime() {
                 <Clock className="w-4 h-4" />
                 <span>Duration Preference</span>
               </Label>
-              <Select name="durationPreference">
+              <Select name="durationPreference" defaultValue="30-60">
                 <SelectTrigger id="duration-preference" className="w-full">
                   <SelectValue placeholder="30 to 60 seconds" />
                 </SelectTrigger>
@@ -261,13 +260,13 @@ function Firsttime() {
         </form>
       </div>
     </div>
-  );
+  )
 }
 
 interface ArtStyleCardProps {
-  name: ArtStyle;
-  isSelected: boolean;
-  onClick: () => void;
+  name: ArtStyle
+  isSelected: boolean
+  onClick: () => void
 }
 
 function ArtStyleCard({ name, isSelected, onClick }: ArtStyleCardProps) {
@@ -310,4 +309,3 @@ function SubmitButton() {
   );
 }
 
-export default Firsttime;

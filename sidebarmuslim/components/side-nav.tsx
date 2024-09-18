@@ -1,9 +1,7 @@
 'use client';
 
 import { Fragment, useEffect, useState } from 'react';
-
 import Link from 'next/link';
-
 import {
   Tooltip,
   TooltipContent,
@@ -13,7 +11,6 @@ import {
 import { NavItems } from '@/config';
 import { cn } from '@/lib/utils';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-
 import { ThemeToggle } from './theme-toggle';
 
 export default function SideNav() {
@@ -47,7 +44,7 @@ export default function SideNav() {
     <div className="pr-4">
       <div
         className={cn(
-          isSidebarExpanded ? 'w-[200px]' : 'w-[68px]',
+          isSidebarExpanded ? 'w-[240px]' : 'w-[80px]',
           'border-r transition-all duration-300 ease-in-out transform hidden sm:flex h-full bg-accent',
         )}
       >
@@ -80,13 +77,13 @@ export default function SideNav() {
         <div className="mt-[calc(calc(90vh)-40px)] relative">
           <button
             type="button"
-            className="absolute bottom-32 right-[-12px] flex h-6 w-6 items-center justify-center border border-muted-foreground/20 rounded-full bg-accent shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out"
+            className="absolute bottom-32 right-[-14px] flex h-7 w-7 items-center justify-center border border-muted-foreground/20 rounded-full bg-accent shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out"
             onClick={toggleSidebar}
           >
             {isSidebarExpanded ? (
-              <ChevronLeft size={16} className='stroke-foreground'/>
+              <ChevronLeft size={20} className='stroke-foreground'/>
             ) : (
-              <ChevronRight size={16} className='stroke-foreground'/>
+              <ChevronRight size={20} className='stroke-foreground'/>
             )}
           </button>
         </div>
@@ -109,11 +106,11 @@ export const SideNavItem: React.FC<{
           href={path}
           className={`h-full relative flex items-center whitespace-nowrap rounded-md ${
             active
-              ? 'font-base text-sm bg-neutral-200 shadow-sm text-neutral-700 dark:bg-neutral-800 dark:text-white'
+              ? 'font-medium text-base bg-neutral-200 shadow-sm text-neutral-700 dark:bg-neutral-800 dark:text-white'
               : 'hover:bg-neutral-200 hover:text-neutral-700 text-neutral-500 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-white'
           }`}
         >
-          <div className="relative font-base text-sm py-1.5 px-2 flex flex-row items-center space-x-2 rounded-md duration-100">
+          <div className="relative font-medium text-base py-2 px-3 flex flex-row items-center space-x-3 rounded-md duration-100">
             {icon}
             <span>{label}</span>
           </div>
@@ -126,19 +123,19 @@ export const SideNavItem: React.FC<{
                 href={path}
                 className={`h-full relative flex items-center whitespace-nowrap rounded-md ${
                   active
-                    ? 'font-base text-sm bg-neutral-200 text-neutral-700 dark:bg-neutral-800 dark:text-white'
+                    ? 'font-medium text-base bg-neutral-200 text-neutral-700 dark:bg-neutral-800 dark:text-white'
                     : 'hover:bg-neutral-200 hover:text-neutral-700 text-neutral-500 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-white'
                 }`}
               >
-                <div className="relative font-base text-sm p-2 flex flex-row items-center space-x-2 rounded-md duration-100">
+                <div className="relative font-medium text-base p-3 flex flex-row items-center space-x-3 rounded-md duration-100">
                   {icon}
                 </div>
               </Link>
             </TooltipTrigger>
             <TooltipContent
               side="left"
-              className="px-3 py-1.5 text-xs"
-              sideOffset={10}
+              className="px-3 py-1.5 text-sm"
+              sideOffset={12}
             >
               <span>{label}</span>
             </TooltipContent>

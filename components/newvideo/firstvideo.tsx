@@ -112,15 +112,9 @@ export default function Firstvideo({ videoUrl }: FirstvideoProps) {
                   className="w-full h-full object-cover"
                   src={videoUrl}
                   onClick={togglePlay}
+                  controls
                 />
-                {!isPlaying && (
-                  <button
-                    className="absolute inset-0 flex items-center justify-center"
-                    onClick={togglePlay}
-                  >
-                    <Play className="w-20 h-20 text-white opacity-70 hover:opacity-100 transition-opacity" />
-                  </button>
-                )}
+             
               </motion.div>
             )}
           </AnimatePresence>
