@@ -1,7 +1,6 @@
-// app/api/webhook/fastspring/route.ts
-
 import { NextRequest, NextResponse } from 'next/server';
-// Updated FastSpringEvent interface
+
+// Define the structure of the FastSpring event
 interface FastSpringEvent {
   id: string;
   processed: boolean;
@@ -13,11 +12,28 @@ interface FastSpringEvent {
     subscription: string;
     active: boolean;
     state: string;
-    product: string;
-    customer: {
-      email: string;
+    account: {
+      id: string;
+      contact: {
+        first: string;
+        last: string;
+        email: string;
+        phone: string;
+      };
     };
-    // Add other relevant fields as needed
+    product: {
+      product: string;
+      display: string;
+      sku: string | null;
+      quantity: number;
+      pricing: {
+        price: { [currency: string]: number };
+      };
+    };
+    price: number;
+    currency: string;
+    begin: number;
+    next: number;
   };
 }
 
@@ -36,7 +52,15 @@ export async function POST(req: NextRequest) {
         case 'subscription.activated':
           await handleSubscriptionActivated(event);
           break;
-        // Add more cases for other event types as needed
+        case 'subscription.canceled':
+          await handleSubscriptionCanceled(event);
+          break;
+        case 'subscription.deactivated':
+          await handleSubscriptionDeactivated(event);
+          break;
+        case 'subscription.updated':
+          await handleSubscriptionUpdated(event);
+          break;
         default:
           console.log(`Unhandled event type: ${event.type}`);
       }
@@ -50,37 +74,37 @@ export async function POST(req: NextRequest) {
 }
 
 async function handleSubscriptionActivated(event: FastSpringEvent) {
-  const { subscription, product, customer } = event.data;
-  const email = customer.email;
-
-  console.log(`Subscription activated: ${subscription}`);
-  console.log(`Product: ${product}`);
-  console.log(`Customer email: ${email}`);
-
-  // Check if the product is the one-month daily subscription
-  if (product === '1-month-daily-subscription') {
-    // Implement your specific logic for the one-month daily subscription
-    await processOneMonthDailySubscription(email, subscription);
-  } else {
-    console.log(`Unhandled product type: ${product}`);
-  }
+  console.log(`Subscription activated: ${event.data.subscription}`);
+  const { email } = event.data.account.contact;
+  const { product, display: productName } = event.data.product;
+  console.log(`User ${email} subscribed to ${productName} (${product})`);
+  // TODO: Implement logic to update user's subscription status in your database
+  // TODO: Send a welcome email to the user
 }
 
-async function processOneMonthDailySubscription(email: string, subscriptionId: string) {
-  // Implement your business logic here, e.g.:
-  // 1. Update user's subscription status in the database
-  // 2. Send a welcome email
-  // 3. Provision any necessary resources for the subscription
-  // 4. Log the subscription details
+async function handleSubscriptionCanceled(event: FastSpringEvent) {
+  console.log(`Subscription canceled: ${event.data.subscription}`);
+  const { email } = event.data.account.contact;
+  const { product, display: productName } = event.data.product;
+  console.log(`User ${email} canceled subscription to ${productName} (${product})`);
+  // TODO: Implement logic to update user's subscription status in your database
+  // TODO: Send a cancellation confirmation email to the user
+}
 
-  console.log(`Processing one-month daily subscription for ${email}`);
-  console.log(`Subscription ID: ${subscriptionId}`);
+async function handleSubscriptionDeactivated(event: FastSpringEvent) {
+  console.log(`Subscription deactivated: ${event.data.subscription}`);
+  const { email } = event.data.account.contact;
+  const { product, display: productName } = event.data.product;
+  console.log(`User ${email} subscription to ${productName} (${product}) was deactivated`);
+  // TODO: Implement logic to update user's subscription status in your database
+  // TODO: Send a deactivation notification email to the user
+}
 
-  // Example: Update user's subscription status (replace with actual database call)
-  // await updateUserSubscription(email, '1-month-daily-subscription', subscriptionId);
-
-  // Example: Send welcome email (replace with actual email sending logic)
-  // await sendWelcomeEmail(email, '1-month-daily-subscription');
-
-  // Add more specific logic as needed for your application
+async function handleSubscriptionUpdated(event: FastSpringEvent) {
+  console.log(`Subscription updated: ${event.data.subscription}`);
+  const { email } = event.data.account.contact;
+  const { product, display: productName } = event.data.product;
+  console.log(`User ${email} subscription to ${productName} (${product}) was updated`);
+  // TODO: Implement logic to update user's subscription details in your database
+  // TODO: Send a subscription update confirmation email to the user
 }
