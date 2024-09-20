@@ -54,12 +54,7 @@ export async function POST(req: NextRequest) {
         case 'subscription.activated':
           await handleSubscriptionActivated(event, supabase);
           break;
-        case 'subscription.canceled':
-          await handleSubscriptionCanceled(event, supabase);
-          break;
-        case 'subscription.deactivated':
-          await handleSubscriptionDeactivated(event, supabase);
-          break;
+       
         default:
           console.log(`Unhandled event type: ${event.type}`);
       }
@@ -79,84 +74,29 @@ async function handleSubscriptionActivated(event: FastSpringEvent, supabase: any
   console.log(`User ${email} subscribed to ${productName} (${product})`);
 
   try {
-    // Get user details from Supabase
-    const user = await getUser(supabase);
-    if (!user) {
-      throw new Error('User not found');
+    // Get user details from Supabase using email
+    const { data: user, error: getUserError } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', email)
+      .single();
+
+    if (getUserError || !user) {
+      throw new Error(`User not found for email: ${email}`);
     }
 
-    // Update user's subscription status in the database
-    /*
-    await getUserDetails(supabase, user.id, {
-      status: 'active',
-      product: product,
-      product_name: productName,
-      subscription_id: event.data.subscription,
-      price: event.data.price,
-      activated_at: new Date().toISOString()
-    });
-*/
     // If it's the user's first subscription, update first_time_users
-    const userDetails = await getUserDetails(supabase);
-    if (userDetails?.first_time_users) {
-      await updateFirstTimeUser(supabase, user.id, false);
+    if (user.first_time_users) {
+      await updateFirstTimeUser(supabase, email, false);
     }
 
-    const is_pro_subscribers = await getUserDetails(supabase);
-    if (is_pro_subscribers?.is_pro_subscribers) {
-      await updateProUser(supabase, user.id, true);
-    }
+    // Update is_pro_subscribers to true
+    await updateProUser(supabase, email, true);
+
+    console.log(`User ${email} is now a pro subscriber`);
 
     // TODO: Send a welcome email to the user
     // You can implement email sending logic here or call a separate function
-
-  } catch (error) {
-    console.error('Error updating user subscription:', error);
-    throw error;
-  }
-}
-
-async function handleSubscriptionCanceled(event: FastSpringEvent, supabase: any) {
-  console.log(`Subscription canceled: ${event.data.subscription}`);
-  const { email } = event.data.account.contact;
-  const { product, display: productName } = event.data.product;
-  console.log(`User ${email} canceled subscription to ${productName} (${product})`);
-
-  try {
-    // Get user details from Supabase
-    const user = await getUser(supabase);
-    if (!user) {
-      throw new Error('User not found');
-    }
-
-    // Update user's subscription status in the database
-
-
-    // TODO: Send a cancellation confirmation email to the user
-
-  } catch (error) {
-    console.error('Error updating user subscription:', error);
-    throw error;
-  }
-}
-
-async function handleSubscriptionDeactivated(event: FastSpringEvent, supabase: any) {
-  console.log(`Subscription deactivated: ${event.data.subscription}`);
-  const { email } = event.data.account.contact;
-  const { product, display: productName } = event.data.product;
-  console.log(`User ${email} subscription to ${productName} (${product}) was deactivated`);
-
-  try {
-    // Get user details from Supabase
-    const user = await getUser(supabase);
-    if (!user) {
-      throw new Error('User not found');
-    }
-
-    // Update user's subscription status in the database
-   
-
-    // TODO: Send a deactivation notification email to the user
 
   } catch (error) {
     console.error('Error updating user subscription:', error);

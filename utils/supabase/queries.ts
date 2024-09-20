@@ -38,7 +38,10 @@ export const getUserDetails = cache(async (supabase: SupabaseClient) => {
   return userDetails;
 });
 
-export const updateFirstTimeUser = async (supabase: SupabaseClient, id: string, firstTimeUser: boolean) => {
+
+
+
+export const updateFirstTimeUserworking = async (supabase: SupabaseClient, id: string, firstTimeUser: boolean) => {
   const { error } = await supabase
     .from('users')
     .update({ first_time_users: firstTimeUser })
@@ -50,11 +53,23 @@ export const updateFirstTimeUser = async (supabase: SupabaseClient, id: string, 
   }
 };
 
-export const updateProUser = async (supabase: SupabaseClient, id: string, is_pro_subscribers: boolean) => {
+export const updateFirstTimeUser = async (supabase: SupabaseClient, email: string, firstTimeUser: boolean) => {
+  const { error } = await supabase
+    .from('users')
+    .update({ first_time_users: firstTimeUser })
+    .eq('email', email);
+
+  if (error) {
+    console.error('Error updating first_time_users:', error);
+    throw error;
+  }
+};
+
+export const updateProUser = async (supabase: SupabaseClient, email: string, is_pro_subscribers: boolean) => {
   const { error } = await supabase
     .from('users')
     .update({ is_pro_subscribers: is_pro_subscribers })
-    .eq('id', id);
+    .eq('email', email);
 
   if (error) {
     console.error('Error updating is_pro_subscribers:', error);
