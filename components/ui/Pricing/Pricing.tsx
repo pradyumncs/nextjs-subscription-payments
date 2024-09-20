@@ -1,5 +1,4 @@
-'use client';
-
+'use client'
 import Button from '@/components/ui/Button';
 import LogoCloud from '@/components/ui/LogoCloud';
 import type { Tables } from '@/types_db';

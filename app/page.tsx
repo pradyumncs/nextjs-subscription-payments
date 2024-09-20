@@ -12,6 +12,7 @@ import { Producttestimonials } from "@/landingpage/sections/Producttestimonials"
 import Step1 from "@/landingpage/sections/Step1";
 import Hero2 from "@/landingpage/sections/Hero2";
 import ScrollingTestimonials from "@/landingpage/sections/Scrolltestimonialheroo";
+import PricingTable from "@/landingpage/sections/Pricingmine";
 export default function Home() {
   return (
     <>
@@ -21,7 +22,7 @@ export default function Home() {
    {/* <ProductShowcase/>*/}
      <Producttestimonials/>
     <Step1/>
-    <Pricing/>
+    <PricingTable/>
     <Carousel/>
     {/* <Testimonials/> */}
     <CallToAction/>
