@@ -49,3 +49,15 @@ export const updateFirstTimeUser = async (supabase: SupabaseClient, id: string, 
     throw error;
   }
 };
+
+export const updateProUser = async (supabase: SupabaseClient, id: string, is_pro_subscribers: boolean) => {
+  const { error } = await supabase
+    .from('users')
+    .update({ is_pro_subscribers: is_pro_subscribers })
+    .eq('id', id);
+
+  if (error) {
+    console.error('Error updating is_pro_subscribers:', error);
+    throw error;
+  }
+};
