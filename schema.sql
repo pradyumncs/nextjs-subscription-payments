@@ -14,7 +14,8 @@ create table users (
   -- Indicates if the user is visiting for the first time (true/false)
   first_time_user boolean default true,  
   -- Indicates if the user has a pro subscription (true/false)
-  is_pro_subscriber boolean default false 
+  is_pro_subscriber boolean default false,
+  email text
 );
 
 
