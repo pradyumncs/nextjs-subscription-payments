@@ -1,8 +1,7 @@
 // app/api/webhook/fastspring/route.ts
 
 import { NextRequest, NextResponse } from 'next/server';
-
-// Define the structure of the FastSpring event
+// Updated FastSpringEvent interface
 interface FastSpringEvent {
   id: string;
   processed: boolean;
@@ -14,6 +13,10 @@ interface FastSpringEvent {
     subscription: string;
     active: boolean;
     state: string;
+    product: string;
+    customer: {
+      email: string;
+    };
     // Add other relevant fields as needed
   };
 }
@@ -47,7 +50,37 @@ export async function POST(req: NextRequest) {
 }
 
 async function handleSubscriptionActivated(event: FastSpringEvent) {
-  // Implement your logic for handling activated subscriptions
-  console.log(`Subscription activated: ${event.data.subscription}`);
-  // Add your business logic here, e.g., updating a database, sending a welcome email, etc.
+  const { subscription, product, customer } = event.data;
+  const email = customer.email;
+
+  console.log(`Subscription activated: ${subscription}`);
+  console.log(`Product: ${product}`);
+  console.log(`Customer email: ${email}`);
+
+  // Check if the product is the one-month daily subscription
+  if (product === '1-month-daily-subscription') {
+    // Implement your specific logic for the one-month daily subscription
+    await processOneMonthDailySubscription(email, subscription);
+  } else {
+    console.log(`Unhandled product type: ${product}`);
+  }
+}
+
+async function processOneMonthDailySubscription(email: string, subscriptionId: string) {
+  // Implement your business logic here, e.g.:
+  // 1. Update user's subscription status in the database
+  // 2. Send a welcome email
+  // 3. Provision any necessary resources for the subscription
+  // 4. Log the subscription details
+
+  console.log(`Processing one-month daily subscription for ${email}`);
+  console.log(`Subscription ID: ${subscriptionId}`);
+
+  // Example: Update user's subscription status (replace with actual database call)
+  // await updateUserSubscription(email, '1-month-daily-subscription', subscriptionId);
+
+  // Example: Send welcome email (replace with actual email sending logic)
+  // await sendWelcomeEmail(email, '1-month-daily-subscription');
+
+  // Add more specific logic as needed for your application
 }
