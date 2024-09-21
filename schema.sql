@@ -152,7 +152,6 @@ ALTER TABLE users
   ADD COLUMN first_time_user boolean default true,
   ADD COLUMN is_pro_subscriber boolean default false;
 
-
 -- Down Migration (for rolling back)
 ALTER TABLE users
   DROP COLUMN first_time_user,
