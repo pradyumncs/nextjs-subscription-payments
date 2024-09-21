@@ -77,7 +77,7 @@ async function handleSubscriptionActivated(event: FastSpringEvent, supabase: any
     // Check if the user exists in the database
     const { data: user, error: userError } = await supabase
       .from('users')
-      .select('id, is_pro_subscriber')
+      .select('*')
       .eq('email', email)
       .single();
 
