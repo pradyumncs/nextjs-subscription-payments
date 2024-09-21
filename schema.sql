@@ -29,7 +29,7 @@ create policy "Can update own user data." on users for update using (auth.uid() 
 -- returns trigger as $$
 -- begin
 --   insert into public.users (id, full_name, avatar_url, first_time_user)
---   values (new.id, new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'avatar_url', true);
+--   values (new.id, new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'avatar_url', new.raw_user_meta_data->>'email');
 --   return new;
 -- end;
 -- $$ language plpgsql security definer;
