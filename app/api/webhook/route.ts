@@ -74,15 +74,37 @@ async function handleSubscriptionActivated(event: FastSpringEvent, supabase: any
   console.log(`User ${email} subscribed to ${productName} (${product})`);
 
   try {
-    // Get user details from Supabase using email
-   
+    // Check if the user exists in the database
+    const { data: user, error: userError } = await supabase
+      .from('users')
+      .select('id, is_pro_subscriber')
+      .eq('email', email)
+      .single();
 
-    // If it's the user's first subscription, update first_time_users
-   
-      await updateFirstTimeUser(supabase, email, true);
-   
+    if (userError) {
+      console.error('Error fetching user:', userError);
+      throw userError;
+    }
+
+    if (!user) {
+      console.error(`User with email ${email} not found in the database`);
+      // Here you might want to create the user or handle this case differently
+      return;
+    }
+
+    console.log('User found:', user);
+
+    // Update first_time_users
+    const { error: firstTimeError } = await updateFirstTimeUser(supabase, email, true);
+    if (firstTimeError) {
+      console.error('Error updating first_time_user:', firstTimeError);
+      throw firstTimeError;
+    }
+
+    console.log(`Successfully updated first_time_user for ${email}`);
+
     // Update is_pro_subscribers to true
-    
+   
 
     console.log(`User ${email} is now a pro subscriber`);
 
@@ -90,7 +112,7 @@ async function handleSubscriptionActivated(event: FastSpringEvent, supabase: any
     // You can implement email sending logic here or call a separate function
 
   } catch (error) {
-    console.error('Error updating user subscription:', error);
+    console.error('Error in handleSubscriptionActivated:', error);
     throw error;
   }
 }
