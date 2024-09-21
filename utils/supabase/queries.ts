@@ -66,11 +66,11 @@ export const updateFirstTimeUser2 = async (supabase: SupabaseClient, email: stri
 };
 
 
-export async function updateFirstTimeUser(supabase: any, email: string, isFirstTime: boolean): Promise<{ data: any | null; error: any | null }> {
+export async function updateFirstTimeUser(supabase: any, email: string, firstTimeUser: boolean): Promise<{ data: any | null; error: any | null }> {
   try {
     const { data, error } = await supabase
       .from('users')
-      .update({ is_first_time_user: isFirstTime })
+      .update({ first_time_users: firstTimeUser })
       .eq('email', email);
 
     if (error) {
@@ -78,7 +78,7 @@ export async function updateFirstTimeUser(supabase: any, email: string, isFirstT
       return { data: null, error };
     }
 
-    console.log(`Successfully updated first_time_user for ${email} to ${isFirstTime}`);
+    console.log(`Successfully updated first_time_user for ${email} to ${firstTimeUser}`);
     return { data, error: null };
   } catch (error) {
     console.error('Unexpected error in updateFirstTimeUser:', error);
