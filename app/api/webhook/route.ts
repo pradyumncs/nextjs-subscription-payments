@@ -72,7 +72,7 @@ async function handleSubscriptionActivated(event: FastSpringEvent) {
 
   // Send the subscription data to /api/subscriptions route
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/subscriptions`, {
+    const response = await fetch('https://youshorts.ai/api/subscription', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ async function handleSubscriptionActivated(event: FastSpringEvent) {
       throw new Error(`Failed to send subscription data: ${response.statusText}`);
     }
 
-    console.log('Subscription data sent successfully to /api/subscriptions');
+    console.log('Subscription data sent successfully to /api/subscription');
   } catch (error) {
     console.error('Error sending subscription data:', error);
   }
