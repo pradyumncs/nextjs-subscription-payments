@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
-import { SupabaseClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 // Define the structure of the FastSpring event
 interface FastSpringEvent {
@@ -52,7 +51,7 @@ const updateFirstTimeUser2 = async (supabase: SupabaseClient, email: string, fir
   const { data, error } = await supabase
     .from('users')
     .update({ first_time_users: firstTimeUser })
-    .eq('email', email);
+    .eq('email', email.trim());
 
   if (error) {
     console.error('Error updating first_time_users:', error.message, error.details, error.hint);
@@ -69,7 +68,7 @@ const updateProUser = async (supabase: SupabaseClient, email: string, isProUser:
   const { data, error } = await supabase
     .from('users')
     .update({ is_pro_subscribers: isProUser })
-    .eq('email', email);
+    .eq('email', email.trim());
 
   if (error) {
     console.error('Error updating is_pro_subscribers:', error.message, error.details, error.hint);
@@ -79,6 +78,23 @@ const updateProUser = async (supabase: SupabaseClient, email: string, isProUser:
   console.log('updateProUser result:', data);
   return data;
 };
+
+// Check if user exists
+async function checkUserExists(supabase: SupabaseClient, email: string) {
+  console.log(`Double-checking if user ${email} exists...`);
+  const { data, error } = await supabase
+    .from('users')
+    .select('email')
+    .ilike('email', email.trim());
+
+  if (error) {
+    console.error('Error checking user existence:', error);
+    throw error;
+  }
+
+  console.log('User check result:', data);
+  return data && data.length > 0;
+}
 
 // Handle subscription activation
 async function handleSubscriptionActivated(event: FastSpringEvent, supabase: SupabaseClient) {
@@ -90,25 +106,29 @@ async function handleSubscriptionActivated(event: FastSpringEvent, supabase: Sup
   try {
     // Check if user exists
     console.log(`Checking if user ${email} exists...`);
-    const { data: existingUser, error: fetchError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', email)
-      .single();
+    const userExists = await checkUserExists(supabase, email);
 
-    if (fetchError) {
-      console.error('Error fetching user:', fetchError);
-      throw fetchError;
-    }
+    if (!userExists) {
+      console.log(`User ${email} not found. Creating new user...`);
+      const { data: newUser, error: createError } = await supabase
+        .from('users')
+        .insert({ email: email.trim(), first_time_users: true, is_pro_subscribers: true })
+        .single();
 
-     
+      if (createError) {
+        console.error('Error creating user:', createError);
+        throw createError;
+      }
+
+      console.log(`Created new user: ${email}`);
+    } else {
       console.log(`Updating existing user: ${email}`);
       await updateFirstTimeUser2(supabase, email, true);
       console.log(`Successfully updated first_time_user for ${email}`);
 
       await updateProUser(supabase, email, true);
       console.log(`User ${email} is now a pro subscriber`);
-    
+    }
 
     // TODO: Send a welcome email to the user
   } catch (error) {
