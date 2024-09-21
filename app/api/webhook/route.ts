@@ -4,7 +4,7 @@ import {
   getUserDetails,
   getSubscription,
   getUser,
-  updateFirstTimeUser,
+  updateFirstTimeUser2,
   updateProUser
   
 } from '@/utils/supabase/queries';
@@ -67,32 +67,25 @@ export async function POST(req: NextRequest) {
   }
 }
 
+
+
 async function handleSubscriptionActivated(event: FastSpringEvent, supabase: any) {
   console.log(`Subscription activated: ${event.data.subscription}`);
   const { email } = event.data.account.contact;
   const { product, display: productName } = event.data.product;
   console.log(`User ${email} subscribed to ${productName} (${product})`);
 
-  try {
-    // Update first_time_users
-    const { data: firstTimeData, error: firstTimeError } = await updateFirstTimeUser(supabase, email, true);
-    if (firstTimeError) {
-      console.error('Error updating first_time_user:', firstTimeError);
-      throw new Error('Failed to update first time user status');
-    }
+  // Update first_time_users
+  await updateFirstTimeUser2(supabase, email, true);
+  console.log('hi');
+  
+  console.log(`Successfully updated first_time_user for ${email}`);
 
-    console.log(`Successfully updated first_time_user for ${email}`);
+  // Update is_pro_subscribers to true
+  await updateProUser(supabase, email, true);
 
-    // Update is_pro_subscribers to true
-   
+  console.log(`User ${email} is now a pro subscriber`);
 
-    console.log(`User ${email} is now a pro subscriber`);
-
-    // TODO: Send a welcome email to the user
-    // You can implement email sending logic here or call a separate function
-
-  } catch (error) {
-    console.error('Error in handleSubscriptionActivated:', error);
-    throw error;
-  }
+  // TODO: Send a welcome email to the user
+  // You can implement email sending logic here or call a separate function
 }
