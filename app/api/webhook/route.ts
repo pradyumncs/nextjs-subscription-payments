@@ -72,7 +72,7 @@ async function handleSubscriptionActivated(event: FastSpringEvent) {
 
   // Send the subscription data to /api/subscriptions route
   try {
-    const response = await fetch('https://youshorts.ai/api/subscription', {
+    const response = await fetch('https://youshorts.ai/api/supabases', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
