@@ -8,7 +8,6 @@ import {
   getSubscription,
   getUser,
   updateFirstTimeUser
-  
 } from '@/utils/supabase/queries';
 
 export default async function PostsPage() {
@@ -17,29 +16,31 @@ export default async function PostsPage() {
     getUser(supabase),
     getUserDetails(supabase),
     getSubscription(supabase),
-    
   ]);
 
   if (!user) {
     return redirect('/signin');
   }
 
-  console.log(userDetails)
-
   // Check if it's the user's first visit (using first_time_users)
-  if (userDetails?.first_time_users) { // Use the correct property name
-    console.log("first time user"); 
+  if (userDetails?.first_time_users) {
+    console.log("first time user");
 
-    // Update the database using the correct column name
-    await updateFirstTimeUser(supabase, user.email, false);
-    console.log("first time user"); 
-
+    // Ensure user.email is defined before passing it to the function
+    if (user.email) { 
+      // Update the database using the correct column name
+      await updateFirstTimeUser(supabase, user.email, false);
+      console.log("first time user updated"); 
+    } else {
+      console.error("User email is undefined. Cannot update first time user.");
+    }
   }
-  
-  console.log(userDetails?.first_time_users)
+
+  console.log(userDetails?.first_time_users);
+
   return (
     <ContentLayout title="All Posts">
-      {userDetails?.first_time_users && <CreateSeries />} 
+      {userDetails?.first_time_users && <CreateSeries />}
       {/* ...rest of your component logic... */}
     </ContentLayout>
   );
