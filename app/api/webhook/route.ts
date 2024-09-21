@@ -75,23 +75,14 @@ async function handleSubscriptionActivated(event: FastSpringEvent, supabase: any
 
   try {
     // Get user details from Supabase using email
-    const { data: user, error: getUserError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', email)
-      .single();
-
-    if (getUserError || !user) {
-      throw new Error(`User not found for email: ${email}`);
-    }
+   
 
     // If it's the user's first subscription, update first_time_users
-    if (user.first_time_users) {
-      await updateFirstTimeUser(supabase, email, false);
-    }
-
+   
+      await updateFirstTimeUser(supabase, email, true);
+   
     // Update is_pro_subscribers to true
-    await updateProUser(supabase, email, true);
+    
 
     console.log(`User ${email} is now a pro subscriber`);
 

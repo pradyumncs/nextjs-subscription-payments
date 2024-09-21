@@ -31,7 +31,9 @@ export default async function PostsPage() {
     console.log("first time user"); 
 
     // Update the database using the correct column name
-    await updateFirstTimeUser(supabase, user.id, false);
+    await updateFirstTimeUser(supabase, user.email, false);
+    console.log("first time user"); 
+
   }
   
   console.log(userDetails?.first_time_users)
