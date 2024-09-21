@@ -18,16 +18,22 @@ interface FastSpringEvent {
         first: string;
         last: string;
         email: string;
-       
+        phone: string;
       };
     };
     product: {
       product: string;
       display: string;
-  
+      sku: string | null;
+      quantity: number;
+      pricing: {
+        price: { [currency: string]: number };
+      };
     };
     price: number;
- 
+    currency: string;
+    begin: number;
+    next: number;
   };
 }
 
@@ -40,60 +46,52 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const events: FastSpringEvent[] = body.events;
 
-    // Acknowledge receipt of the webhook immediately
-    const response = NextResponse.json({ success: true }, { status: 200 });
-
-    // Process events asynchronously
-    processEvents(events).catch(error => {
-      console.error('Error processing events:', error);
-    });
-
-    return response;
-  } catch (error) {
-    console.error('Error parsing webhook payload:', error);
-    return NextResponse.json({ error: 'Bad request' }, { status: 400 });
-  }
-}
-
-async function processEvents(events: FastSpringEvent[]) {
-  for (const event of events) {
-    switch (event.type) {
-      case 'subscription.activated':
-        await handleSubscriptionActivated(event);
-        break;
-      default:
-        console.log(`Unhandled event type: ${event.type}`);
+    // Process each event
+    for (const event of events) {
+      switch (event.type) {
+        case 'subscription.activated':
+          await handleSubscriptionActivated(event);
+          break;
+        default:
+          console.log(`Unhandled event type: ${event.type}`);
+      }
     }
+
+    return NextResponse.json({ success: true }, { status: 200 });
+  } catch (error) {
+    console.error('Error processing webhook:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
 async function handleSubscriptionActivated(event: FastSpringEvent) {
-  console.log(`Subscription activated: ${event.data.subscription}`);
   const { email } = event.data.account.contact;
   const { product, display: productName } = event.data.product;
+
   console.log(`User ${email} subscribed to ${productName} (${product})`);
 
+  // Send the subscription data to /api/subscriptions route
   try {
-    await sendSubscriptionDataToServer(email, productName, product);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/subscriptions`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        productName,
+        product,
+        subscriptionId: event.data.subscription,
+        userId: event.data.account.id,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to send subscription data: ${response.statusText}`);
+    }
+
+    console.log('Subscription data sent successfully to /api/subscriptions');
   } catch (error) {
-    console.error('Failed to send subscription data to server:', error);
-    // TODO: Implement retry logic or store failed events for later processing
+    console.error('Error sending subscription data:', error);
   }
-}
-
-async function sendSubscriptionDataToServer(email: string, productName: string, product: string) {
-  const response = await fetch('/api/subscription', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ email, productName, product }),
-  });
-
-  if (!response.ok) {
-    throw new Error('Failed to send subscription data to server');
-  }
-
-  const result = await response.json();
-  console.log('Subscription data sent to server:', result);
 }
