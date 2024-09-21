@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/utils/supabase/server';
-import { SupabaseClient } from '@supabase/supabase-js';
+import { updateFirstTimeUser2, updateProUser } from '@/utils/supabase/subscriptionUtils';
 
 // Define the structure of the FastSpring event
 interface FastSpringEvent {
@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-async function handleSubscriptionActivated(event: FastSpringEvent, supabase: SupabaseClient) {
+async function handleSubscriptionActivated(event: FastSpringEvent, supabase: any) {
   console.log(`Subscription activated: ${event.data.subscription}`);
   const { email } = event.data.account.contact;
   const { product, display: productName } = event.data.product;
@@ -82,33 +82,3 @@ async function handleSubscriptionActivated(event: FastSpringEvent, supabase: Sup
     throw error;
   }
 }
-
-export const updateFirstTimeUser2 = async (supabase: SupabaseClient, email: string, firstTimeUser: boolean) => {
-  const { data, error } = await supabase
-    .from('users')
-    .update({ first_time_users: firstTimeUser })
-    .eq('email', email);
-
-  if (error) {
-    console.error('Error updating first_time_users:', error);
-    throw error;
-  }
-
-  console.log('updateFirstTimeUser2 result:', data);
-  return data;
-};
-
-export const updateProUser = async (supabase: SupabaseClient, email: string, isProUser: boolean) => {
-  const { data, error } = await supabase
-    .from('users')
-    .update({ is_pro_subscribers: isProUser })
-    .eq('email', email);
-
-  if (error) {
-    console.error('Error updating is_pro_subscribers:', error);
-    throw error;
-  }
-
-  console.log('updateProUser result:', data);
-  return data;
-};
