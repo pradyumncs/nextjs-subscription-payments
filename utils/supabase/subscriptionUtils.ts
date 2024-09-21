@@ -65,3 +65,19 @@ export const updateProUser = async (supabase: SupabaseClient, email: string, isP
   console.log('updateProUser result:', data);
   return data;
 };
+
+
+export const updatecredits = async (supabase: SupabaseClient, email: string, credits: number) => {
+  const { data, error } = await supabase
+    .from('users')
+    .update({ credits: credits })
+    .eq('email', email);
+
+  if (error) {
+    console.error('Error updating credits:', error);
+    throw error;
+  }
+
+  console.log('updateProUser credits:', data);
+  return data;
+};
