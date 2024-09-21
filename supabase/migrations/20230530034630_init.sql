@@ -12,9 +12,9 @@ create table users (
   -- Stores your customer's payment instruments.
   payment_method jsonb,
   -- Indicates if the user is visiting for the first time (true/false)
-  first_time_users boolean default true,  
+  first_time_user boolean default true,  
   -- Indicates if the user has a pro subscription (true/false)
-  is_pro_subscribers boolean default false,
+  is_pro_subscriber boolean default false,
   email text
 );
 
@@ -28,8 +28,8 @@ create policy "Can update own user data." on users for update using (auth.uid() 
 -- create function public.handle_new_user() 
 -- returns trigger as $$
 -- begin
---   insert into public.users (id, full_name, avatar_url, first_time_user)
---   values (new.id, new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'avatar_url', true);
+--   insert into public.users (id, full_name, avatar_url, first_time_user,email)
+--   values (new.id, new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'avatar_url', new.raw_user_meta_data->>'email');
 --   return new;
 -- end;
 -- $$ language plpgsql security definer;
