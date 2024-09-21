@@ -9,6 +9,7 @@ import {
   getUser,
   updateFirstTimeUser
 } from '@/utils/supabase/queries';
+import { updateFirstTimeUser2 } from "@/utils/supabase/subscriptionUtils";
 
 export default async function PostsPage() {
   const supabase = createClient();
@@ -23,6 +24,7 @@ export default async function PostsPage() {
   }
 
   // Check if it's the user's first visit (using first_time_users)
+  /*
   if (userDetails?.first_time_users) {
     console.log("first time user");
 
@@ -35,6 +37,21 @@ export default async function PostsPage() {
       console.error("User email is undefined. Cannot update first time user.");
     }
   }
+*/
+
+  if (userDetails?.first_time_users) {
+    console.log("first time user");
+
+    // Ensure user.email is defined before passing it to the function
+    if (user.email) { 
+      // Update the database using the correct column name
+      await updateFirstTimeUser2(supabase, user.email, false);
+      console.log("first time user updated"); 
+    } else {
+      console.error("User email is undefined. Cannot update first time user.");
+    }
+  }
+  
 
   console.log(userDetails?.first_time_users);
 
