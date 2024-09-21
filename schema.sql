@@ -28,7 +28,7 @@ create policy "Can update own user data." on users for update using (auth.uid() 
 -- create function public.handle_new_user() 
 -- returns trigger as $$
 -- begin
---   insert into public.users (id, full_name, avatar_url, first_time_user)
+--   insert into public.users (id, full_name, avatar_url, first_time_user,email)
 --   values (new.id, new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'avatar_url', new.raw_user_meta_data->>'email');
 --   return new;
 -- end;
@@ -151,6 +151,7 @@ create publication supabase_realtime for table products, prices;
 ALTER TABLE users 
   ADD COLUMN first_time_user boolean default true,
   ADD COLUMN is_pro_subscriber boolean default false;
+
 
 -- Down Migration (for rolling back)
 ALTER TABLE users
