@@ -74,31 +74,11 @@ async function handleSubscriptionActivated(event: FastSpringEvent, supabase: any
   console.log(`User ${email} subscribed to ${productName} (${product})`);
 
   try {
-    // Check if the user exists in the database
-    const { data: user, error: userError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', email)
-      .single();
-
-    if (userError) {
-      console.error('Error fetching user:', userError);
-      throw userError;
-    }
-
-    if (!user) {
-      console.error(`User with email ${email} not found in the database`);
-      // Here you might want to create the user or handle this case differently
-      return;
-    }
-
-    console.log('User found:', user);
-
     // Update first_time_users
-    const { error: firstTimeError } = await updateFirstTimeUser(supabase, email, true);
+    const { data: firstTimeData, error: firstTimeError } = await updateFirstTimeUser(supabase, email, true);
     if (firstTimeError) {
       console.error('Error updating first_time_user:', firstTimeError);
-      throw firstTimeError;
+      throw new Error('Failed to update first time user status');
     }
 
     console.log(`Successfully updated first_time_user for ${email}`);
