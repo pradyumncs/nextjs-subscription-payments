@@ -82,18 +82,54 @@ const updateProUser = async (supabase: SupabaseClient, email: string, isProUser:
 // Check if user exists
 async function checkUserExists(supabase: SupabaseClient, email: string) {
   console.log(`Double-checking if user ${email} exists...`);
+  
+  // Try exact match first
+  const { data: exactMatch, error: exactError } = await supabase
+    .from('users')
+    .select('email')
+    .eq('email', email.trim());
+
+  if (exactError) {
+    console.error('Error checking user existence (exact match):', exactError);
+    throw exactError;
+  }
+
+  console.log('Exact match result:', exactMatch);
+
+  // If no exact match, try case-insensitive match
+  if (!exactMatch || exactMatch.length === 0) {
+    const { data: caseInsensitiveMatch, error: caseInsensitiveError } = await supabase
+      .from('users')
+      .select('email')
+      .ilike('email', email.trim());
+
+    if (caseInsensitiveError) {
+      console.error('Error checking user existence (case-insensitive):', caseInsensitiveError);
+      throw caseInsensitiveError;
+    }
+
+    console.log('Case-insensitive match result:', caseInsensitiveMatch);
+    return caseInsensitiveMatch && caseInsensitiveMatch.length > 0;
+  }
+
+  return true;
+}
+
+// Fetch all users for debugging
+async function fetchAllUsers(supabase: SupabaseClient) {
+  console.log('Fetching all users for debugging...');
   const { data, error } = await supabase
     .from('users')
     .select('email')
-    .ilike('email', email.trim());
+    .order('email');
 
   if (error) {
-    console.error('Error checking user existence:', error);
+    console.error('Error fetching all users:', error);
     throw error;
   }
 
-  console.log('User check result:', data);
-  return data && data.length > 0;
+  console.log('All users:', data);
+  return data;
 }
 
 // Handle subscription activation
@@ -104,6 +140,9 @@ async function handleSubscriptionActivated(event: FastSpringEvent, supabase: Sup
   console.log(`User ${email} subscribed to ${productName} (${product})`);
 
   try {
+    // Fetch all users for debugging
+    await fetchAllUsers(supabase);
+
     // Check if user exists
     console.log(`Checking if user ${email} exists...`);
     const userExists = await checkUserExists(supabase, email);
