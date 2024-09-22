@@ -1,6 +1,6 @@
 import { usePathname } from 'next/navigation';
 
-import { Bell, Briefcase, Home, Settings, User } from 'lucide-react';
+import { Bell, Briefcase, Home, Settings, User,Gem , Play  } from 'lucide-react';
 
 export const NavItems = () => {
   const pathname = usePathname();
@@ -20,7 +20,7 @@ export const NavItems = () => {
     {
       name: 'Create',
       href: '/create',
-      icon: <User size={20} />,
+      icon: <Play size={20} />,
       active: isNavItemActive(pathname, '/create'),
       position: 'top',
     },
@@ -28,16 +28,17 @@ export const NavItems = () => {
     {
       name: 'Pricing',
       href: '/pricing',
-      icon: <Settings size={20} />,
+      icon: <Gem size={20} />,
       active: isNavItemActive(pathname, '/pricing'),
       position: 'top',
     },
+    
     {
       name: 'Account',
       href: '/account',
       icon: <Settings size={20} />,
       active: isNavItemActive(pathname, '/account'),
-      position: 'bottom',
+      position: 'top',
     },
   ];
 };

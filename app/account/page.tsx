@@ -1,14 +1,11 @@
-import CustomerPortalForm from '@/components/ui/AccountForms/CustomerPortalForm';
-import EmailForm from '@/components/ui/AccountForms/EmailForm';
-import NameForm from '@/components/ui/AccountForms/NameForm';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/utils/supabase/server';
 import {
   getUserDetails,
   getSubscription,
   getUser,
-  updateFirstTimeUser
 } from '@/utils/supabase/queries';
+import AccountSection from '@/components/AccountSection';
 
 export default async function Account() {
   const supabase = createClient();
@@ -16,33 +13,26 @@ export default async function Account() {
     getUser(supabase),
     getUserDetails(supabase),
     getSubscription(supabase)
-    
   ]);
 
   if (!user) {
     return redirect('/signin');
   }
-  console.log(userDetails)
 
-
-
+  const isPro = userDetails?.is_pro_subscribers || false;
 
   return (
-    <section className="mb-32 bg-black">
+    <section className="min-h-screen bg-gradient-to-b from-gray-100 to-white">
       <div className="max-w-6xl px-4 py-8 mx-auto sm:px-6 sm:pt-24 lg:px-8">
         <div className="sm:align-center sm:flex sm:flex-col">
-          <h1 className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
+          <h1 className="text-4xl font-extrabold text-gray-900 sm:text-center sm:text-6xl">
             Account
           </h1>
-          <p className="max-w-2xl m-auto mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl">
-            We partnered with Stripe for a simplified billing.
+          <p className="max-w-2xl m-auto mt-5 text-xl text-gray-600 sm:text-center sm:text-2xl">
+            Manage your YouShorts subscription
           </p>
         </div>
-      </div>
-      <div className="p-4">
-        <CustomerPortalForm subscription={subscription} />
-        <NameForm userName={userDetails?.full_name ?? ''} />
-        <EmailForm userEmail={user.email} />
+        <AccountSection isPro={isPro} />
       </div>
     </section>
   );

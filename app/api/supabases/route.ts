@@ -14,10 +14,26 @@ export async function POST(req: NextRequest) {
     await updateProUser(supabase, email, true);
 
     // Check if the productName is '1-month-daily-subscription' and update credits accordingly
-    let credits = 120; // Default credits
+    let credits = 10; // Default credits
     if (product === '1-month-daily-subscription') {
-      credits = 200; // Set credits to 200 for this specific subscription
+      credits = 300;
+    } else if (product === '1-month-premium-subscription') {
+      credits = 600;
+    } else if (product === '1-month-massive-subscription') {
+      credits = 1200;
+    } else if (product === '1-month-starter-subscription') {
+      credits = 120;
+    } else if (product === '1-year-starter-subscription') {
+      credits = 1440;
+    } else if (product === '1-year-daily-subscription') {
+      credits = 3600;
+    } else if (product === '1-year-premium-subscription') {
+      credits = 7200;
+    } else if (product === '1-year-massive-subscription') {
+      credits = 14400;
     }
+
+
 
     await updatecredits(supabase, email, credits);
 

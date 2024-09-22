@@ -1,16 +1,32 @@
-import React from 'react'
-import { Pricing } from '@/landingpage/sections/Pricing'
-import { Footer } from '@/landingpage/sections/Footer'
+import React from 'react';
+import { Pricing } from '@/landingpage/sections/Pricing';
+import { Footer } from '@/landingpage/sections/Footer';
+import PricingTable from '@/landingpage/sections/Pricingmine';
+import { redirect } from 'next/navigation';
+import { createClient } from '@/utils/supabase/server';
+import {
+  getUserDetails,
+  getSubscription,
+  getUser,
+} from '@/utils/supabase/queries';
+export default async function Account() {
+  const supabase = createClient();
+  const [user, userDetails, subscription] = await Promise.all([
+    getUser(supabase),
+    getUserDetails(supabase),
+    getSubscription(supabase)
+  ]);
 
-export default function PrivacyPolicy() {
+  if (!user) {
+    return redirect('/signin');
+  }
+
   return (
-    <div className="min-h-screen bg-white py-12 px-4 ">
-      <div className="max-w-3xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
-        <div className="px-4 py-5 sm:p-6">
-         <Pricing/>
-        </div>
+    <div className="h-screen w-full bg-white flex flex-col justify-between">
+      <div className="flex-grow">
+        <PricingTable />
       </div>
-<Footer/>
+      <Footer />
     </div>
-  )
+  );
 }
