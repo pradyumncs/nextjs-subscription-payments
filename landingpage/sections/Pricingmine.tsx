@@ -116,7 +116,7 @@ export default function PricingTable() {
   }
 
   return (
-    <div className="py-24 sm:py-32 bg-gradient-to-b from-white to-gray-100">
+    <div className="py-12 sm:py-12 bg-gradient-to-b from-white to-gray-100">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
         <div className="flex justify-center pb-10">
