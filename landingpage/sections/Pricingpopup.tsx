@@ -119,9 +119,7 @@ export default function PricingTable() {
     <div className="py-24 sm:py-32 bg-gradient-to-b from-white to-gray-100">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
-        <div className="flex justify-center pb-10">
-              <div className="tag">Pricing</div>
-            </div>
+          <h2 className="text-base font-semibold leading-7 text-blue-600">Pricing</h2>
           <p className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
             Choose the perfect plan for your needs
           </p>
