@@ -41,7 +41,7 @@ const Step: React.FC<StepProps> = ({ title, description, imageSrc, imageAlt, isR
 
         <div className="w-full md:w-1/2 md:px-8">
           <h2 className="text-3xl font-bold mb-4">{title}</h2>
-          <p className="mb-4">{description}</p>
+          <p className="mb-4 text-lg">{description}</p>
         </div>
       </div>
       {afterStepImage && (
