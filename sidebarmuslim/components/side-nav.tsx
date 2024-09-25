@@ -45,7 +45,7 @@ export default function SideNav() {
       <div
         className={cn(
           isSidebarExpanded ? 'w-[240px]' : 'w-[80px]',
-          'border-r transition-all duration-300 ease-in-out transform hidden sm:flex h-full bg-accent',
+          'border-r transition-all duration-300 ease-in-out transform hidden sm:flex h-full bg-white',
         )}
       >
         <aside className="flex h-full flex-col w-full break-words px-4 overflow-x-hidden columns-1">
@@ -77,13 +77,13 @@ export default function SideNav() {
         <div className="mt-[calc(calc(90vh)-40px)] relative">
           <button
             type="button"
-            className="absolute bottom-32 right-[-14px] flex h-7 w-7 items-center justify-center border border-muted-foreground/20 rounded-full bg-accent shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out"
+            className="absolute bottom-32 right-[-14px] flex h-7 w-7 items-center justify-center border border-muted-foreground/20 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out"
             onClick={toggleSidebar}
           >
             {isSidebarExpanded ? (
-              <ChevronLeft size={20} className='stroke-foreground'/>
+              <ChevronLeft size={50} className='stroke-foreground'/>
             ) : (
-              <ChevronRight size={20} className='stroke-foreground'/>
+              <ChevronRight size={50} className='stroke-foreground'/>
             )}
           </button>
         </div>

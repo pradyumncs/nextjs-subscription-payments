@@ -81,8 +81,7 @@ export default function Component() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-purple-500 to-indigo-600 text-white flex flex-col items-center justify-center p-4">
-      <div className="w-full max-w-3xl space-y-8">
+<div className="min-h-screen bg-gradient-to-r from-purple-500 to-indigo-600 text-white flex flex-col items-center justify-center p-4 rounded-2xl">      <div className="w-full max-w-3xl space-y-8">
         <h1 className="text-4xl font-bold text-center mb-2">CREATE A VIDEO</h1>
         <p className="text-center text-lg mb-8">
           Schedule a series of Faceless Videos to post on auto-pilot.

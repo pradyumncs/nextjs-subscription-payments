@@ -7,6 +7,8 @@ import Logo from '@/components/icons/Logo';
 import { usePathname, useRouter } from 'next/navigation';
 import { getRedirectMethod } from '@/utils/auth-helpers/settings';
 import s from './Navbar.module.css';
+import { Button } from "@/components/ui/button"
+import { Crown } from "lucide-react"
 
 interface NavlinksProps {
   user?: any;
@@ -15,36 +17,40 @@ interface NavlinksProps {
 export default function Navlinks({ user }: NavlinksProps) {
   const router = getRedirectMethod() === 'client' ? useRouter() : null;
 
+
   return (
     <div className="relative flex flex-row justify-between py-4 align-center md:py-6">
       <div className="flex items-center flex-1">
         <Link href="/" className={s.logo} aria-label="Logo">
           <Logo />
         </Link>
+     
         <nav className="ml-6 space-x-2 lg:block">
-          <Link href="/" className={s.link}>
-           Home
+          <Link href="/account" className={s.link}>
+            Account
           </Link>
          
         </nav>
         <nav className="ml-6 space-x-2 lg:block">
-          <Link href="/pricing" className={s.link}>
-            Pricing
+          <Link href="/create" className={s.link}>
+           Create
           </Link>
          
         </nav>
-      
     
       </div>
       <div className="flex justify-end space-x-8">
         {user ? (
-          
-          <form onSubmit={(e) => handleRequest(e, SignOut, router)}>
-            <input type="hidden" name="pathName" value={usePathname()} />
-            <button type="submit" className={s.link}>
-               Sign out 
-            </button>
-          </form>
+        <Link href="/pricing" className="inline-block">
+        <Button
+          className="bg-red-600 hover:bg-red-500 text-white font-semibold rounded-full
+                     py-3 px-4 text-lg
+                     sm:py-4 sm:px-5 sm:text-xl
+                     md:py-5 md:px-6 md:text-2xl"
+        >
+          Upgrade <Crown className="ml-2 h-5 w-5 md:h-6 md:w-6 text-yellow-400" />
+        </Button>
+      </Link>
         ) : (
           <Link href="/signin" className={s.link}>
             Sign In
