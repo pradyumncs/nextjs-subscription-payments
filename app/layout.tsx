@@ -10,8 +10,8 @@ import Navbar from "@/components/ui/Navbar";
 
 
 export const metadata: Metadata = {
-  title: "YouShorts.ai",
-  description: "Create Faceless Videos Very Fast",
+  title: "YouShorts AI",
+  description: "Create Faceless Videos Very Fast with our Ai Saas turn your text prompts into YouTube shorts, Generate Scripts and Turn it to video Reels Shorts",
 };
 
 export default function RootLayout({
