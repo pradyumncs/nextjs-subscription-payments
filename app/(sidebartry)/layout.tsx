@@ -9,6 +9,8 @@ import SideNav from '@/sidebarmuslim/components/side-nav';
 
 import Header from '../../sidebarmuslim/components/header';
 
+import BottomNav from '@/bottomsidebar/bottom-nav';
+
 const inter = Inter({ subsets: ['latin'] });
 
 
@@ -29,6 +31,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               </div>
             </div>
           </div>
+          <BottomNav />
         </ContextProvider>
     
   );

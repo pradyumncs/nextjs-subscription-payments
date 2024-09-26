@@ -4,7 +4,6 @@ import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import clsx from "clsx";
 import { ThemeProvider } from "@/providers/theme-provider";
-import BottomNav from "@/bottomsidebar/bottom-nav";
 const dmSans = DM_Sans({ subsets: ["latin"] });
 import Navbar from "@/components/ui/Navbar";
 

@@ -18,16 +18,16 @@ const useNavigation = () => {
     setIsMessagesActive(false);
 
     switch (pathname) {
-      case '/dashboard':
+      case '/':
         setIsHomeActive(true);
         break;
-      case '/account':
+      case '/create':
         setIsExploreActive(true);
         break;
-      case '/posts':
+      case '/account':
         setIsNotificationsActive(true);
         break;
-      case '/tags':
+      case '/pricing':
         setIsMessagesActive(true);
         break;
       default:

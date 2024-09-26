@@ -4,6 +4,8 @@ import { Footer } from '@/landingpage/sections/Footer';
 import PricingTable from '@/landingpage/sections/Pricingmine';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/utils/supabase/server';
+import { ContentLayout } from "@/dashboard/components/admin-panel/content-layout";
+
 import {
   getUserDetails,
   getSubscription,
@@ -22,11 +24,9 @@ export default async function Account() {
   }
 
   return (
-    <div className="h-screen w-full bg-white flex flex-col justify-between">
-      <div className="flex-grow">
+    <ContentLayout title="">
+      
         <PricingTable />
-      </div>
-      <Footer />
-    </div>
+        </ContentLayout>
   );
 }
