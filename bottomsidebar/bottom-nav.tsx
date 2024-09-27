@@ -8,6 +8,7 @@ import useNavigation from '@/hooks/use-navigation';
 import useScrollingEffect from '@/hooks/use-scroll';
 import { Icon } from '@iconify/react';
 
+
 const BottomNav = () => {
   const scrollDirection = useScrollingEffect(); // Use the custom hook
   const navClass = scrollDirection === 'up' ? '' : 'opacity-25 duration-500';
