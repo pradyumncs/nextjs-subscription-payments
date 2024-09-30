@@ -29,6 +29,12 @@ import ChillBeatsImage from '@/assets/work/4.png'
 
 type ArtStyle = "YouShorts" | "Comic Book" | "Disney Toon" | "Studio Ghibli" | "Chill Beats"
 
+
+interface FirsttimeProps {
+  userEmail: string;
+  
+}
+
 interface StyleImage {
   src: any // Using 'any' here as a workaround for the StaticImageData type
   alt: string
@@ -52,12 +58,17 @@ const initialState = {
   message: '',
 }
 
-export default function Component() {
+export default function Component({ userEmail }: FirsttimeProps) {
+  const [email, setEmail] = useState(userEmail || "");
   const [selectedStyle, setSelectedStyle] = React.useState<ArtStyle>("YouShorts")
   const [selectedTopic, setSelectedTopic] = useState("scary")
   const [state, formAction] = useFormState(createSeries, initialState)
   const router = useRouter()
 
+  console.log(email)
+  console.log(email)
+
+  
   useEffect(() => {
     if (state.message === 'Series created successfully!') {
       const timer = setTimeout(() => {

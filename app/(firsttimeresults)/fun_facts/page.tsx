@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ContentLayout } from "@/dashboard/components/admin-panel/content-layout";
-import { CreateSeries } from "@/components/create-seriesfinalfree";
 import { redirect } from 'next/navigation';
 import { createClient } from '@/utils/supabase/server';
 import {

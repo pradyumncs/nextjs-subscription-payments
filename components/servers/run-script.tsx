@@ -1,4 +1,3 @@
-// app/run-script.tsx
 'use client'
 
 import { useState } from 'react'
@@ -6,8 +5,8 @@ import { useRouter } from 'next/navigation'
 import { runPythonScript } from '@/app/actions/server'
 
 export default function RunScript() {
-  const [csvFilename, setCsvFilename] = useState('')
-  const [startingRow, setStartingRow] = useState('')
+  const [email, setEmail] = useState('')
+  const [title, setTitle] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [result, setResult] = useState('')
   const router = useRouter()
@@ -18,7 +17,7 @@ export default function RunScript() {
     setResult('')
 
     try {
-      const response = await runPythonScript(csvFilename, startingRow)
+      const response = await runPythonScript(title,email)
 
       if ('error' in response) {
         setResult(`Error: ${response.error}`)
@@ -37,28 +36,29 @@ export default function RunScript() {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Run Python Script</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
+     
         <div>
-          <label htmlFor="csvFilename" className="block text-sm font-medium text-gray-700">
-            CSV Filename
+          <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+            Title
           </label>
           <input
             type="text"
-            id="csvFilename"
-            value={csvFilename}
-            onChange={(e) => setCsvFilename(e.target.value)}
+            id="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             required
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           />
         </div>
         <div>
-          <label htmlFor="startingRow" className="block text-sm font-medium text-gray-700">
-            Starting Row
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            Email
           </label>
           <input
-            type="number"
-            id="startingRow"
-            value={startingRow}
-            onChange={(e) => setStartingRow(e.target.value)}
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           />
