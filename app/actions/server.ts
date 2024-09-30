@@ -22,8 +22,7 @@ console.log(`Starting job submission for title: ${title}, email: ${email}`)
     // Use nohup to keep the process running even if the SSH session is closed
     // Use & to run the process in the background
     // Redirect all output to a log file
-    const command = `ssh root@45.55.50.247 "cd serveryoushorts && source venv/bin/activate && nohup python3 submit_job.py '${title}' ${email} > job_submission.log 2>&1 &"`
-    
+    const command = `ssh -o StrictHostKeyChecking=no root@45.55.50.247 "cd serveryoushorts && source venv/bin/activate && nohup python3 submit_job.py '${title}' ${email} > job_submission.log 2>&1 &"`
     console.log('Executing command:', command)
 
     const { stdout, stderr } = await execAsync(command)
