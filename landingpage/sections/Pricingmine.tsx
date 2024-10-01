@@ -41,8 +41,8 @@ const pricingTiers: PricingTier[] = [
       { name: 'Regenerate Voice Script', included: false },
       { name: 'Standard Resolution', included: false },
     ],
-    monthlyUrl: 'https://youshorts.test.onfastspring.com/1-month-starter-subscription',
-    yearlyUrl: 'https://youshorts.test.onfastspring.com/1-year-starter-subscription',
+    monthlyUrl: 'https://youshorts.onfastspring.com/1-month-starter-subscription',
+    yearlyUrl: 'https://youshorts.onfastspring.com/1-year-starter-subscription',
   },
   {
     name: 'Daily',
@@ -60,8 +60,8 @@ const pricingTiers: PricingTier[] = [
       { name: 'HD Resolution', included: true },
       { name: 'Discord Support', included: true },
     ],
-    monthlyUrl: 'https://youshorts.test.onfastspring.com/1-month-daily-subscription',
-    yearlyUrl: 'https://youshorts.test.onfastspring.com/1-year-daily-subscription',
+    monthlyUrl: 'https://youshorts.onfastspring.com/1-month-daily-subscription',
+    yearlyUrl: 'https://youshorts.onfastspring.com/1-year-daily-subscription',
   },
   {
     name: 'Premium',
@@ -80,8 +80,8 @@ const pricingTiers: PricingTier[] = [
       { name: 'Discord Support', included: true },
     ],
     popular: true,
-    monthlyUrl: 'https://youshorts.test.onfastspring.com/1-month-premium-subscription',
-    yearlyUrl: 'https://youshorts.test.onfastspring.com/1-year-premium-subscription',
+    monthlyUrl: 'https://youshorts.onfastspring.com/1-month-premium-subscription',
+    yearlyUrl: 'https://youshorts.onfastspring.com/1-year-premium-subscription',
   },
   {
     name: 'Massive',
@@ -99,8 +99,8 @@ const pricingTiers: PricingTier[] = [
       { name: 'HD Resolution', included: true },
       { name: 'Discord Support', included: true },
     ],
-    monthlyUrl: 'https://youshorts.test.onfastspring.com/1-month-massive-subscription',
-    yearlyUrl: 'https://youshorts.test.onfastspring.com/1-year-massive-subscription',
+    monthlyUrl: 'https://youshorts.onfastspring.com/1-month-massive-subscription',
+    yearlyUrl: 'https://youshorts.onfastspring.com/1-year-massive-subscription',
   },
 ]
 
