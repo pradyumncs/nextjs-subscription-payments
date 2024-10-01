@@ -75,7 +75,7 @@ export default function Component({ userEmail }: FirsttimeProps) {
         if (selectedTopic && selectedTopic !== 'custom') {
           router.push(`/${selectedTopic}`)
         } else {
-          router.push('/dashboard')
+          router.push('/create')
         }
       }, 200)
       return () => clearTimeout(timer)
@@ -133,28 +133,31 @@ export default function Component({ userEmail }: FirsttimeProps) {
                 <SelectValue placeholder="Choose Content" />
               </SelectTrigger>
               <SelectContent>
+               
                 <SelectItem value="scary">Scary Stories</SelectItem>
+                <SelectItem value="custom">Custom Topic</SelectItem>
                 <SelectItem value="bedtime">Bedtime Stories</SelectItem>
                 <SelectItem value="history">Interesting History</SelectItem>
                 <SelectItem value="motivational">Motivational</SelectItem>
                 <SelectItem value="fun_facts">Fun Facts</SelectItem>
                 <SelectItem value="philosophy">Philosophy</SelectItem>               
-                 {/*   <SelectItem value="custom">Custom Topic</SelectItem>*/}
+                    
                 </SelectContent>
             </Select>
             {selectedTopic === 'custom' && (
               <div className="space-y-2">
-             
+                <Label htmlFor="custom-prompt" className="text-red-700">Custom Prompt is for Pro users Only 👑</Label>
                 <Textarea
                   id="custom-prompt"
                   name="customPrompt"
-                  placeholder="Example: Please share a concise and captivating account of a lesser-known, yet intriguing, historical event. The event MUST be real and factual. Begin with an introduction or question."
+                  placeholder="Why Is NewYork the Best Place To Live"
                   className="h-32"
-                  
+                  disabled
                 />
                 <div className="text-right text-sm text-gray-500">0 / 2500</div>
               </div>
-            )}          </div>
+            )}
+          </div>
 
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
@@ -255,7 +258,7 @@ export default function Component({ userEmail }: FirsttimeProps) {
               <h2 className="text-3xl font-semibold text-[#7c3aed]">Create</h2>
             </div>
             <p className="text-lg">You will be able to preview your upcoming videos before posting</p>
-            <SubmitButton />
+            <SubmitButton isDisabled={selectedTopic === 'custom'} />
           </div>
           
           {state.message && (
@@ -309,13 +312,16 @@ function ArtStyleCard({ name, isSelected, onClick }: ArtStyleCardProps) {
   );
 }
 
-function SubmitButton() {
+function SubmitButton({ isDisabled }: { isDisabled: boolean }) {
   const { pending } = useFormStatus();
   
   return (
-    <Button type="submit" className="w-full p-7 bg-[#7c3aed] hover:bg-[#6d28d9] text-white" disabled={pending}>
-      {pending ? 'Creating...' : 'CREATE VIDEO '}
+    <Button 
+      type="submit" 
+      className="w-full p-7 bg-[#7c3aed] hover:bg-[#6d28d9] text-white disabled:opacity-50 disabled:cursor-not-allowed" 
+      disabled={pending || isDisabled}
+    >
+      {pending ? 'Creating...' : isDisabled ? 'Custom Prompt is for Pro users Only 👑' : 'CREATE VIDEO'}
     </Button>
   );
 }
-
