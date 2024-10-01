@@ -9,8 +9,10 @@ import {
   updateFirstTimeUser
 } from '@/utils/supabase/queries';
 import Firsttime from "@/components/Firsttime";
-//import Component from "@/components/PremiumCreate";
 import Component from "@/components/PremiumCreatenode";
+import PricingTable from "@/landingpage/sections/Pricingmine";
+
+
 export default async function PostsPage() {
   const supabase = createClient();
   const [user, userDetails, subscription] = await Promise.all([
@@ -25,16 +27,13 @@ export default async function PostsPage() {
 
   console.log(userDetails);
 
-  // Check if it's the user's first visit (using first_time_users)
   if (userDetails?.first_time_users) {
     console.log("first time user");
-    // Update the database using the correct column name
-    await updateFirstTimeUser(supabase, user.id, false);
+    
   }
 
   console.log(userDetails.email);
   console.log(userDetails?.first_time_users);
-
 
   return (
     <ContentLayout title="">
@@ -42,8 +41,9 @@ export default async function PostsPage() {
         <Firsttime userEmail={userDetails.email} />
       ) : userDetails?.is_pro_subscribers ? (
         <Component userEmail={userDetails.email} />
-      ) : null}
-      {/* ...rest of your component logic... */}
+      ) : (
+        <PricingTable  />
+      )}
     </ContentLayout>
   );
 }

@@ -24,9 +24,8 @@ export async function createSeries(prevState: State, formData: FormData): Promis
 
   // Check if it's the user's first visit (using first_time_users)
   if (userDetails?.first_time_users) {
-    console.log("first time user")
-    // Update the database using the correct column name
-    await updateFirstTimeUser(supabase, user.id, false)
+    console.log(userDetails?.first_time_users)    // Update the database using the correct column name
+    await updateFirstTimeUser(supabase, userDetails.email, false)
   }
 
   // Extract form data
