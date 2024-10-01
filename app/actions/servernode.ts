@@ -1,15 +1,31 @@
 'use server'
 
-import { exec } from 'child_process'
-import { promisify } from 'util'
 import { createClient } from '@/utils/supabase/server'
 import { getUserDetails, getUser, updateFirstTimeUser } from '@/utils/supabase/queries'
 import { updatecredits } from '@/utils/supabase/subscriptionUtils'
-const execAsync = promisify(exec)
 
-export async function runPythonScript(title: string, email: string) {
+async function submitJobToProcessor(title: string, email: string) {
+  const response = await fetch('http://45.55.50.247:3000/submit-job', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      // Add any necessary authentication headers
+    },
+    body: JSON.stringify({ title, email }),
+  });
 
-console.log(`Starting job submission for title: ${title}, email: ${email}`)
+  if (!response.ok) {
+    throw new Error('Failed to submit job to processor');
+  }
+
+  return await response.json();
+}
+
+export async function runPythonScript(formData: FormData) {
+  const title = formData.get('title') as string
+  const email = formData.get('email') as string
+
+  console.log(`Starting job submission for title: ${title}, email: ${email}`)
 
   const supabase = createClient()
   const user = await getUser(supabase)
@@ -19,19 +35,9 @@ console.log(`Starting job submission for title: ${title}, email: ${email}`)
   }
 
   try {
-    // Use nohup to keep the process running even if the SSH session is closed
-    // Use & to run the process in the background
-    // Redirect all output to a log file
-    const command = `ssh -o root@45.55.50.247 "cd serveryoushorts && source venv/bin/activate && nohup python3 submit_job.py '${title}' ${email} > job_submission.log 2>&1 &"`
-    console.log('Executing command:', command)
+    // Submit job to your DigitalOcean server
+    const jobResult = await submitJobToProcessor(title, email);
 
-    const { stdout, stderr } = await execAsync(command)
-    
-    if (stderr) {
-      console.error('CSV processing error:', stderr)
-      return { error: stderr, details: 'Error occurred during CSV processing' }
-    }
-    
     console.log('CSV processing started successfully')
 
     // Update user's first-time status
@@ -46,17 +52,13 @@ console.log(`Starting job submission for title: ${title}, email: ${email}`)
     const creditCost = 100 // Adjust this value as needed
     const newCreditAmount = currentCredits - creditCost
 
-   
-
     // Update credits
     const updatedCredits = await updatecredits(supabase, userDetails.email, newCreditAmount)
-    
-    
 
     return { 
       message: 'CSV processing started successfully. You will receive an email when the processing is complete.', 
       details: `${creditCost} credits have been deducted. Remaining credits: ${updatedCredits}`,
-      output: stdout 
+      output: jobResult 
     }
   } catch (error) {
     console.error('Error starting CSV processing:', error)

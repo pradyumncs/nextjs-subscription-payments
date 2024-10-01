@@ -9,8 +9,8 @@ import {
   updateFirstTimeUser
 } from '@/utils/supabase/queries';
 import Firsttime from "@/components/Firsttime";
-import Component from "@/components/PremiumCreate";
-
+//import Component from "@/components/PremiumCreate";
+import Component from "@/components/PremiumCreatenode";
 export default async function PostsPage() {
   const supabase = createClient();
   const [user, userDetails, subscription] = await Promise.all([
@@ -34,6 +34,7 @@ export default async function PostsPage() {
 
   console.log(userDetails.email);
   console.log(userDetails?.first_time_users);
+
 
   return (
     <ContentLayout title="">
