@@ -24,7 +24,7 @@ export default function Home() {
     <Step1/>
     <PricingTable/>
     <Carousel/>
-    {/* <Testimonials/> */}
+     <Testimonials/> 
     <CallToAction/>
     <FAQs/>
     <Footer/>
