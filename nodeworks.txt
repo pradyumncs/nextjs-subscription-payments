@@ -1,0 +1,62 @@
+const express = require('express');
+const cors = require('cors');
+const { exec } = require('child_process');
+const fs = require('fs');
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+// Log file path
+const logFile = '/root/job-server/server.log';
+
+// Function to log messages
+function log(message) {
+  const timestamp = new Date().toISOString();
+  const logMessage = `${timestamp}: ${message}\n`;
+  console.log(logMessage);
+  fs.appendFileSync(logFile, logMessage);
+}
+
+app.post('/submit-job', (req, res) => {
+  log('Received POST request to /submit-job');
+  log(`Request body: ${JSON.stringify(req.body)}`);
+
+  const { title, email } = req.body;
+
+  if (!title || !email) {
+    log('Error: Missing required fields');
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  // Validate email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    log('Error: Invalid email format');
+    return res.status(400).json({ error: 'Invalid email format' });
+  }
+
+  const escapedTitle = title.replace(/'/g, "'\\''");
+  const escapedEmail = email.replace(/'/g, "'\\''");
+  const command = `bash -c "cd .. && cd serveryoushorts && source venv/bin/activate && nohup python3 submit_job.py '${escapedTitle}' '${escapedEmail}' > job_submission.log 2>&1 &"`;
+
+  
+  log(`Executing command: ${command}`);
+
+  exec(command, (error, stdout, stderr) => {
+    if (error) {
+      log(`Error executing command: ${error.message}`);
+      return res.status(500).json({ error: 'Failed to start job' });
+    }
+    if (stderr) {
+      log(`Command stderr: ${stderr}`);
+    }
+    log(`Command stdout: ${stdout}`);
+    log('Job started successfully');
+    res.json({ message: 'Job started successfully' });
+  });
+});
+
+const PORT = 3000;
+app.listen(PORT, () => log(`Server running on port ${PORT}`));

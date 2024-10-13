@@ -32,11 +32,18 @@ export async function POST(request: Request) {
     const newCreditAmount = userDetails.credits - creditCost;
     const updatedCredits = await updatecredits(supabase, userDetails.email, newCreditAmount);
 
+    // Check if the API key is defined
+    const apiKey = process.env.EXTERNAL_API_TOKEN;
+    if (!apiKey) {
+      throw new Error('EXTERNAL_API_KEY is not defined in the environment variables');
+    }
+
     // Submit job to external API
     const response = await fetch('http://45.55.50.247:3000/submit-job', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-API-Key': apiKey,
       },
       body: JSON.stringify({ title, email }),
     });
