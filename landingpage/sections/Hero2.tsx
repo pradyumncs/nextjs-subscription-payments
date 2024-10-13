@@ -59,9 +59,10 @@ const Hero2: React.FC = () => {
               Try Youshorts.ai for Free
             </button>
           </Link>
-          <p className="text-sm md:text-base lg:text-lg text-gray-500 mt-4 md:mt-6 items-center">
-            (No credit card required)
-          </p>
+          <p className="text-sm md:text-base lg:text-lg text-gray-500 mt-4 md:mt-6 items-center lg:ml-10">
+  (No credit card required)
+</p>
+
         </div>
 
         {/* Right side feature showcase */}

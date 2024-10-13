@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     const userDetails = await getUserDetails(supabase);
     
     // Check if user has enough credits
-    const creditCost = 100; // Adjust this value as needed
+    const creditCost = 10; // Adjust this value as needed
     if (userDetails.credits < creditCost) {
       return NextResponse.json({ error: 'Insufficient credits' }, { status: 400 });
     }
