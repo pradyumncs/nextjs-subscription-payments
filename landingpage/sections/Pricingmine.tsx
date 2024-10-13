@@ -29,7 +29,7 @@ const pricingTiers: PricingTier[] = [
   {
     name: 'Starter',
     description: 'Generate 12 videos per month',
-    monthlyPrice: 19,
+    monthlyPrice: 15,
     features: [
       { name: '120 credits', included: true, highlight: true },
       { name: 'Unlimited Editor', included: true },
@@ -119,9 +119,9 @@ export default function PricingTable() {
     <div className="py-12 sm:py-12 bg-gradient-to-b from-white to-gray-100">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
-        <div className="flex justify-center pb-10">
-              <div className="tag">Pricing</div>
-            </div>
+          <div className="flex justify-center pb-10">
+            <div className="tag">Pricing</div>
+          </div>
           <p className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
             Choose the perfect plan for your needs
           </p>
@@ -146,7 +146,12 @@ export default function PricingTable() {
         </div>
         <div className="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-4">
           {pricingTiers.map((tier) => (
-            <Card key={tier.name} className={`flex flex-col justify-between ${tier.popular ? 'border-blue-600 border-2 shadow-blue-100 shadow-lg' : ''}`}>
+            <Card key={tier.name} className={`flex flex-col justify-between relative ${tier.popular ? 'border-purple-600 border-2 shadow-purple-100 shadow-lg' : ''}`}>
+              {tier.popular && (
+                <Badge className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-purple-600 text-white px-3 py-1 text-sm font-semibold">
+                  Most Popular
+                </Badge>
+              )}
               <CardHeader>
                 <CardTitle className="text-2xl font-bold">{tier.name}</CardTitle>
                 <CardDescription>{tier.description}</CardDescription>
@@ -168,9 +173,9 @@ export default function PricingTable() {
                     <li key={feature.name} className="flex items-start">
                       {feature.included ? (
                         feature.highlight ? (
-                          <Diamond className="h-6 w-5 flex-shrink-0 text-blue-500" aria-hidden="true" />
+                          <Diamond className="h-6 w-5 flex-shrink-0 text-purple-500" aria-hidden="true" />
                         ) : (
-                          <Check className="h-6 w-5 flex-shrink-0 text-blue-500" aria-hidden="true" />
+                          <Check className="h-6 w-5 flex-shrink-0 text-purple-500" aria-hidden="true" />
                         )
                       ) : (
                         <span className="h-6 w-5 flex-shrink-0" aria-hidden="true" />
@@ -184,25 +189,12 @@ export default function PricingTable() {
               </CardContent>
               <CardFooter>
                 <Button 
-                  className="w-full" 
-                  variant={tier.popular ? "default" : "outline"}
+                  className="w-full bg-red-600 text-white hover:bg-red-700 transition-colors text-lg py-6 font-semibold" 
                   onClick={() => window.open(isYearly ? tier.yearlyUrl : tier.monthlyUrl, '_blank')}
                 >
-                  {tier.popular ? (
-                    <>
-                      <Zap className="mr-2 h-4 w-4" />
-                      Get started
-                    </>
-                  ) : (
-                    'Subscribe'
-                  )}
+                  Buy
                 </Button>
               </CardFooter>
-              {tier.popular && (
-                <Badge className="absolute top-0 right-0 m-2" variant="secondary">
-                  Most Popular
-                </Badge>
-              )}
             </Card>
           ))}
         </div>

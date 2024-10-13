@@ -97,3 +97,15 @@ export const updateProUser = async (supabase: SupabaseClient, email: string, is_
     throw error;
   }
 };
+
+export const updateFirstTimeProUser = async (supabase: SupabaseClient, email: string, subscription_firsttime: boolean) => {
+  const { error } = await supabase
+    .from('users')
+    .update({ subscription_firsttime: subscription_firsttime })
+    .eq('email', email);
+
+  if (error) {
+    console.error('Error updating first_time_users:', error);
+    throw error;
+  }
+};

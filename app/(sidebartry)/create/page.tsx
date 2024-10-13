@@ -6,7 +6,8 @@ import {
   getUserDetails,
   getSubscription,
   getUser,
-  updateFirstTimeUser
+  updateFirstTimeUser,
+  updateFirstTimeProUser
 } from '@/utils/supabase/queries';
 import Firsttime from "@/components/Firsttime";
 import Component from "@/components/PremiumCreatenode";
@@ -32,6 +33,13 @@ export default async function PostsPage() {
     
   }
 
+
+
+  if (userDetails?.subscription_firsttime) {
+    console.log("pro subscriber first time");
+    await updateFirstTimeProUser(supabase, userDetails.email, false); // Set subscription_firsttime to false
+    return redirect('/thankyousub'); // Redirect to thank you page
+  }
   console.log(userDetails.email);
   console.log(userDetails?.first_time_users);
 
