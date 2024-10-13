@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Check, Diamond, Zap } from 'lucide-react'
+import { Check, Diamond, Zap ,Star} from 'lucide-react'
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
@@ -127,7 +127,7 @@ export default function PricingTable() {
           </p>
         </div>
         <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600">
-          Unlock the power of AI-generated videos with our flexible pricing options. 
+          Unlock the power of AI generated videos with our flexible pricing options. 
           Start creating stunning content today!
         </p>
         <div className="mt-16 flex items-center justify-center gap-x-4">
@@ -173,9 +173,9 @@ export default function PricingTable() {
                     <li key={feature.name} className="flex items-start">
                       {feature.included ? (
                         feature.highlight ? (
-                          <Diamond className="h-6 w-5 flex-shrink-0 text-purple-500" aria-hidden="true" />
+                          <Star className="h-6 w-5 flex-shrink-0 text-green-600" aria-hidden="true" />
                         ) : (
-                          <Check className="h-6 w-5 flex-shrink-0 text-purple-500" aria-hidden="true" />
+                          <Check className="h-6 w-5 flex-shrink-0 text-green-600" aria-hidden="true" />
                         )
                       ) : (
                         <span className="h-6 w-5 flex-shrink-0" aria-hidden="true" />
