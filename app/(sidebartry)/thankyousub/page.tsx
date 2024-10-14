@@ -2,10 +2,19 @@ import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle, Sparkles, Mail, ArrowRight } from 'lucide-react'
+import Script from 'next/script'
 
 export default function ThankYouPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-primary/20 to-background flex flex-col items-center justify-center p-4">
+      <Script id="google-ads-conversion" strategy="afterInteractive">
+        {`
+          gtag('event', 'conversion', {
+            'send_to': 'AW-722690554/s5eACJbcmN0ZEPrDzdgC',
+            'transaction_id': ''
+          });
+        `}
+      </Script>
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary">
