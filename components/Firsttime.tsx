@@ -133,20 +133,18 @@ export default function Component({ userEmail }: FirsttimeProps) {
                 <SelectValue placeholder="Choose Content" />
               </SelectTrigger>
               <SelectContent>
-               
+              <SelectItem value="custom">Custom Topic </SelectItem>
                 <SelectItem value="scary">Scary Stories</SelectItem>
-                <SelectItem value="custom">Custom Topic</SelectItem>
                 <SelectItem value="bedtime">Bedtime Stories</SelectItem>
                 <SelectItem value="history">Interesting History</SelectItem>
                 <SelectItem value="motivational">Motivational</SelectItem>
                 <SelectItem value="fun_facts">Fun Facts</SelectItem>
-                <SelectItem value="philosophy">Philosophy</SelectItem>               
-                    
+                <SelectItem value="philosophy">Philosophy</SelectItem>                                  
                 </SelectContent>
             </Select>
-            {selectedTopic === 'custom' && (
+            
               <div className="space-y-2">
-                <Label htmlFor="custom-prompt" className="text-red-700">Custom Prompt is for Pro users Only 👑</Label>
+                <Label htmlFor="custom-prompt" className="text-red-700">Custom Topic is for Pro users Only 👑</Label>
                 <Textarea
                   id="custom-prompt"
                   name="customPrompt"
@@ -156,7 +154,7 @@ export default function Component({ userEmail }: FirsttimeProps) {
                 />
                 <div className="text-right text-sm text-gray-500">0 / 2500</div>
               </div>
-            )}
+          
           </div>
 
           <div className="space-y-4">
