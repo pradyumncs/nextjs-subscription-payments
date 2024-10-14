@@ -117,7 +117,7 @@ export const Testimonials = () => {
             <div className="tag">Testimonials</div>
           </div>
           <h2 className="section-title mt-5">What our users says</h2>
-          <p className="section-description mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nam doloremque incidunt non in quasi, rerum facere. Nisi, ea nam! Repellat porro, fugit dolorem magnam placeat eveniet maxime ea et?</p>
+          <p className="section-description mt-5">Get our Honest Feedback from our Users to know that it is the best software in the market </p>
         </div>
         <div className="flex justify-center gap-6  mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[738px] overflow-hidden">
           <TestimonialsColumn testimonials={firstColumn} duration={15} />
