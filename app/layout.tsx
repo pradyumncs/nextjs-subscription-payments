@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { ThemeProvider } from "@/providers/theme-provider";
 const dmSans = DM_Sans({ subsets: ["latin"] });
 import Navbar from "@/components/ui/Navbar";
-
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const metadata: Metadata = {
   title: "YouShorts AI",
@@ -26,9 +26,9 @@ export default function RootLayout({
    <Navbar />
 
         {children}
-      
+        
       </body>
-     
+      <GoogleAnalytics gaId="AW-722690554" />
     </html>
     </>
   );
